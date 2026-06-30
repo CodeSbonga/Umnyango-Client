@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="images/UmnyangoFavicon.png" />
   <title>Umnyango Residences | Luxury Accommodation, Vosloorus</title>
-  <meta name="description" content="Umnyango Residences — premium rental accommodation in Vosloorus, Ekurhuleni. Where luxury meets affordability. Established 2018." />
+  <meta name="description" content="Umnyango Residences - premium rental accommodation in Vosloorus, Ekurhuleni. Where luxury meets affordability. Established 2018." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,30 +18,30 @@
     }
     .hero-media {
       position: absolute; inset: 0; z-index: 0; overflow: hidden;
-      background-image: url('home2.jpeg');
+      background-image: url('images/Ext 26/photo-03.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
     .hero-media-bg {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(180deg, rgba(10,10,8,0.15) 0%, rgba(10,10,8,0.5) 30%, rgba(10,10,8,0.88) 60%, rgba(10,10,8,0.98) 100%);
+      background: linear-gradient(180deg, rgba(19,60,106,0.15) 0%, rgba(19,60,106,0.5) 30%, rgba(19,60,106,0.88) 60%, rgba(19,60,106,0.98) 100%);
     }
     .hero-media-bg::after {
       content: ''; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse at 30% 25%, rgba(201,168,76,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 75%, rgba(201,168,76,0.08) 0%, transparent 40%);
+        radial-gradient(ellipse at 30% 25%, rgba(111,168,58,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 75%, rgba(111,168,58,0.08) 0%, transparent 40%);
     }
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1; pointer-events: none;
-      background: linear-gradient(180deg, rgba(10,10,8,0.1) 0%, rgba(10,10,8,0.5) 30%, rgba(10,10,8,0.88) 60%, rgba(10,10,8,0.98) 100%);
+      background: linear-gradient(180deg, rgba(19,60,106,0.1) 0%, rgba(19,60,106,0.5) 30%, rgba(19,60,106,0.88) 60%, rgba(19,60,106,0.98) 100%);
     }
     .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 120px 0 60px; text-align: center; }
 
     .hero-pill {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15);
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(111,168,58,0.15);
       border-radius: 999px; padding: 8px 20px; color: var(--gold); font-size: 0.6rem;
       font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
       margin-bottom: 32px; font-family: 'Inter', sans-serif;
@@ -50,7 +51,7 @@
     .hero-pill .pulse-dot {
       width: 7px; height: 7px; background: var(--gold); border-radius: 50%;
       animation: pulse-dot 2s ease-in-out infinite;
-      box-shadow: 0 0 12px rgba(201,168,76,0.6);
+      box-shadow: 0 0 12px rgba(111,168,58,0.6);
     }
     @keyframes pulse-dot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
 
@@ -101,8 +102,8 @@
       font-family: 'Inter', sans-serif; backdrop-filter: blur(8px);
       transition: all 0.4s var(--ease-out);
     }
-    .trust-badge:hover { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.2); transform: translateY(-2px); }
-    .trust-badge .icon { width: 18px; height: 18px; border-radius: 50%; background: rgba(201,168,76,0.12); display: grid; place-items: center; color: var(--gold); font-size: 0.55rem; }
+    .trust-badge:hover { background: rgba(255,255,255,0.08); border-color: rgba(111,168,58,0.2); transform: translateY(-2px); }
+    .trust-badge .icon { width: 18px; height: 18px; border-radius: 50%; background: rgba(111,168,58,0.12); display: grid; place-items: center; color: var(--gold); font-size: 0.55rem; }
 
     .hero-scroll {
       position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
@@ -115,19 +116,19 @@
 
     /* ── STATISTICS BAR ── */
     .stats-bar {
-      background: var(--ebony); border-top: 1px solid rgba(201,168,76,0.08);
-      border-bottom: 1px solid rgba(201,168,76,0.08);
+      background: var(--ebony); border-top: 1px solid rgba(111,168,58,0.08);
+      border-bottom: 1px solid rgba(111,168,58,0.08);
     }
     .stats-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      border-left: 1px solid rgba(201,168,76,0.05);
+      border-left: 1px solid rgba(111,168,58,0.05);
     }
     .stat-cell {
       padding: 32px 20px; text-align: center;
-      border-right: 1px solid rgba(201,168,76,0.05);
+      border-right: 1px solid rgba(111,168,58,0.05);
       transition: background var(--transition);
     }
-    .stat-cell:hover { background: rgba(201,168,76,0.03); }
+    .stat-cell:hover { background: rgba(111,168,58,0.03); }
     .stat-num { display: block; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
     .stat-label { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-family: 'Inter', sans-serif; }
 
@@ -157,19 +158,19 @@
     .maps-section { background: var(--ebony); padding: 100px 0; position: relative; overflow: hidden; }
     .maps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .map-card { border-radius: var(--radius-xl); overflow: hidden; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); transition: all 0.5s var(--ease-out); }
-    .map-card:hover { transform: translateY(-8px); border-color: rgba(201,168,76,0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+    .map-card:hover { transform: translateY(-8px); border-color: rgba(111,168,58,0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
     .map-card-label { display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: rgba(255,255,255,0.03); }
-    .map-card-label .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; box-shadow: 0 0 10px rgba(201,168,76,0.4); animation: pulse-dot 2s ease-in-out infinite; }
+    .map-card-label .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; box-shadow: 0 0 10px rgba(111,168,58,0.4); animation: pulse-dot 2s ease-in-out infinite; }
     .map-card-label span { font-size: 0.82rem; color: var(--white); font-weight: 600; }
 
     /* ── CTA ── */
     .cta-section {
-      background: linear-gradient(135deg, var(--ebony) 0%, #141210 100%);
+      background: linear-gradient(135deg, var(--ebony) 0%, #0d2a4e 100%);
       padding: 80px 0; text-align: center; position: relative; overflow: hidden;
     }
     .cta-section::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      background: radial-gradient(ellipse at 20% 50%, rgba(111,168,58,0.08) 0%, transparent 50%),
                   radial-gradient(ellipse at 80% 50%, rgba(139,111,71,0.06) 0%, transparent 50%);
     }
     .cta-section::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
@@ -186,7 +187,7 @@
     .intro-image { border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl); min-height: 420px; position: relative; }
     .intro-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out); }
     .intro-image:hover img { transform: scale(1.05); }
-    .intro-image::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(201,168,76,0.08); border-radius: var(--radius-xl); pointer-events: none; }
+    .intro-image::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(111,168,58,0.08); border-radius: var(--radius-xl); pointer-events: none; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) { .suites-grid { grid-template-columns: 1fr 1fr; } .why-grid { grid-template-columns: 1fr 1fr; } }
@@ -211,7 +212,7 @@
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav" id="mainNav">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">Umnyango<span>Residences</span></a>
+      <a href="index.html" class="nav-logo"><img src="images/UmnyangoLogo.png" alt="Umnyango Residences" /><span class="nav-logo-text">Umnyango<span>Residences</span></span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -247,7 +248,7 @@
         </h1>
         <p class="hero-sub">
           Experience premium rental accommodation at Umnyango Residences.
-          Curated spaces, modern finishes, and all-inclusive living —
+          Curated spaces, modern finishes, and all-inclusive living -
           designed for those who expect more.
         </p>
         <div class="hero-actions">
@@ -290,7 +291,7 @@
         <div>
           <span class="section-label">Our Residences</span>
           <h2 class="section-title">Curated <span class="gold">Living Spaces</span></h2>
-          <p class="section-subtitle">Each suite is meticulously appointed to the highest standard — premium quality, absolute comfort, and move-in ready.</p>
+          <p class="section-subtitle">Each suite is meticulously appointed to the highest standard - premium quality, absolute comfort, and move-in ready.</p>
         </div>
         <a href="properties.html" class="btn btn-outline">View All</a>
       </div>
@@ -305,7 +306,7 @@
             <p>Newly renovated with built-in wardrobes, spotlights, tiled floors, and private bathrooms with bold African-inspired tilework.</p>
           </div>
           <div class="room-card-footer">
-            <div class="room-price">R3,000 <small>per month inclusive</small></div>
+            <div class="room-price">R2,000 - R3,500 <small>per month inclusive</small></div>
             <a href="property-detail.html?p=1" class="btn btn-secondary btn-sm">Details</a>
           </div>
         </div>
@@ -319,7 +320,7 @@
             <p>Modern functional units in a safe growing community with easy access to transport routes, schools, and retail.</p>
           </div>
           <div class="room-card-footer">
-            <div class="room-price">R3,000 <small>per month inclusive</small></div>
+            <div class="room-price">R3,500 - R3,800 <small>per month inclusive</small></div>
             <a href="property-detail.html?p=2" class="btn btn-secondary btn-sm">Details</a>
           </div>
         </div>
@@ -333,7 +334,7 @@
             <p>Quality accommodation in a secure residential setting with professional management and convenient access to amenities.</p>
           </div>
           <div class="room-card-footer">
-            <div class="room-price">R3,000 <small>per month inclusive</small></div>
+            <div class="room-price">R2,800 - R3,000 <small>per month inclusive</small></div>
             <a href="property-detail.html?p=3" class="btn btn-secondary btn-sm">Details</a>
           </div>
         </div>
@@ -347,14 +348,14 @@
       <div class="reveal" style="text-align:center;">
         <span class="section-label" style="justify-content:center;">Why Choose Us</span>
         <h2 class="section-title">The Umnyango <span class="gold">Standard</span></h2>
-        <p class="section-subtitle" style="margin:0 auto;">We set the benchmark for premium rental accommodation — quality, care, and community at every step.</p>
+        <p class="section-subtitle" style="margin:0 auto;">We set the benchmark for premium rental accommodation - quality, care, and community at every step.</p>
       </div>
       <div class="why-grid">
-        <div class="why-card reveal reveal-delay-1"><div class="why-num">01</div><h3>Premium Quality</h3><p>Modern finishes, spotlights, built-in wardrobes, bold tiling — maintained to a standard that residents are proud to call home.</p></div>
-        <div class="why-card reveal reveal-delay-2"><div class="why-num">02</div><h3>All-Inclusive</h3><p>R3,000/month covers water and electricity. One simple payment — no hidden costs, no surprises.</p></div>
+        <div class="why-card reveal reveal-delay-1"><div class="why-num">01</div><h3>Premium Quality</h3><p>Modern finishes, spotlights, built-in wardrobes, bold tiling - maintained to a standard that residents are proud to call home.</p></div>
+        <div class="why-card reveal reveal-delay-2"><div class="why-num">02</div><h3>All-Inclusive</h3><p>From R2,000/month, all-inclusive - water and electricity covered. One simple payment, no hidden costs.</p></div>
         <div class="why-card reveal reveal-delay-3"><div class="why-num">03</div><h3>Safe & Secure</h3><p>Established residential areas with security as a priority. Your peace of mind matters.</p></div>
-        <div class="why-card reveal reveal-delay-4"><div class="why-num">04</div><h3>Community First</h3><p>Close to schools, transport, healthcare, and shopping — everything you need nearby.</p></div>
-        <div class="why-card reveal reveal-delay-5"><div class="why-num">05</div><h3>Same-Day Response</h3><p>Maintenance requests answered fast. Call, email, or WhatsApp — we reply within hours.</p></div>
+        <div class="why-card reveal reveal-delay-4"><div class="why-num">04</div><h3>Community First</h3><p>Close to schools, transport, healthcare, and shopping - everything you need nearby.</p></div>
+        <div class="why-card reveal reveal-delay-5"><div class="why-num">05</div><h3>Same-Day Response</h3><p>Maintenance requests answered fast. Call, email, or WhatsApp - we reply within hours.</p></div>
         <div class="why-card reveal reveal-delay-1"><div class="why-num">06</div><h3>8+ Years of Trust</h3><p>Since 2018, Umnyango has delivered reliable, professional property management across Ekurhuleni.</p></div>
       </div>
     </div>
@@ -396,7 +397,7 @@
           <span class="section-label">About</span>
           <h2 class="section-title">Built on the Belief That Everyone Deserves a <span class="gold">Quality Home</span></h2>
           <p style="color:var(--text-soft);line-height:1.8;margin-bottom:16px;">Founded in 2018 in Vosloorus, Ekurhuleni, Umnyango transforms underutilised spaces into thriving, affordable rental communities.</p>
-          <p style="color:var(--text-soft);line-height:1.8;margin-bottom:28px;">Our name means <em style="color:var(--gold);font-style:normal;">door</em> in isiZulu — a gateway to better living.</p>
+          <p style="color:var(--text-soft);line-height:1.8;margin-bottom:28px;">Our name means <em style="color:var(--gold);font-style:normal;">door</em> in isiZulu - a gateway to better living.</p>
           <a href="about.html" class="btn btn-outline">Discover Our Story</a>
         </div>
       </div>
@@ -407,7 +408,7 @@
   <section class="cta-section reveal">
     <div class="container" style="position:relative;z-index:1;">
       <h2>Ready to Elevate Your Living?</h2>
-      <p>Explore our available suites or get in touch — we respond the same day.</p>
+      <p>Explore our available suites or get in touch - we respond the same day.</p>
       <div class="btn-group">
         <a href="properties.html" class="btn btn-primary">Browse Suites</a>
         <a href="contact.html" class="btn btn-ghost">Get In Touch</a>
@@ -442,7 +443,7 @@
             <p><a href="tel:+27728287116">+27 72 828 7116</a></p>
             <p><a href="mailto:Thandolwethu@gems.gov.za">Thandolwethu@gems.gov.za</a></p>
             <a href="https://wa.me/27728287116" class="footer-wa-link" target="_blank" rel="noopener">Chat on WhatsApp →</a>
-            <div class="footer-hours">Mon–Fri: 8am – 5pm<br>Sat: 9am – 1pm<br>Sun: Closed</div>
+            <div class="footer-hours">Mon-Fri: 8am - 5pm<br>Sat: 9am - 1pm<br>Sun: Closed</div>
           </div>
         </div>
       </div>
@@ -623,7 +624,7 @@
       window.scrollTo({ top: window.innerHeight - 80, behavior: 'smooth' });
     });
 
-    console.log('%c Umnyango Residences ✦ Premium Living ', 'background: #0a0a08; color: #c9a84c; font-size: 14px; font-weight: bold; padding: 12px 24px; border-radius: 8px;');
+    console.log('%c Umnyango Residences ✦ Premium Living ', 'background: #133c6a; color: #6fa83a; font-size: 14px; font-weight: bold; padding: 12px 24px; border-radius: 8px;');
     console.log('%c Crafted by KRAFT Studios ', 'background: #1a1a18; color: #faf6ef; font-size: 12px; padding: 6px 16px; border-radius: 4px;');
   </script>
 </body>
