@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">Suite Details | Umnyango Hotel & Suites</title>
+  <meta name="description" content="View detailed information and photos for this Umnyango rental property in Vosloorus, Ekurhuleni." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== DETAIL HERO ===== */
+    .detail-hero {
+      position: relative;
+      background: var(--charcoal-dark);
+      overflow: hidden;
+    }
+
+    .detail-hero-carousel {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hero-slides-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hero-slide {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(22,22,18,0.85) 0%, rgba(22,22,18,0.2) 50%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(22,22,18,0.6);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--white);
+      backdrop-filter: blur(8px);
+      transition: background var(--transition);
+      z-index: 5;
+    }
+
+    .hero-nav-btn:hover {
+      background: var(--gold);
+      color: var(--charcoal-dark);
+    }
+
+    .hero-nav-btn.prev { left: 16px; }
+    .hero-nav-btn.next { right: 16px; }
+
+    .hero-counter {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(22,22,18,0.65);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      font-family: 'Inter', sans-serif;
+      z-index: 5;
+    }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 7px;
+      z-index: 5;
+    }
+
+    .hero-dot {
+      width: 7px;
+      height: 7px;
+      background: rgba(255,255,255,0.35);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .hero-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    .expand-btn {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(22,22,18,0.65);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+      font-family: 'Inter', sans-serif;
+      transition: background var(--transition);
+      z-index: 5;
+    }
+
+    .expand-btn:hover {
+      background: var(--gold);
+      color: var(--charcoal-dark);
+    }
+
+    .no-photos {
+      height: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.5);
+      background: var(--charcoal);
+    }
+
+    /* ===== HERO INFO BAR ===== */
+    .hero-info-bar {
+      background: var(--charcoal-dark);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      padding: 20px 0;
+    }
+
+    .hero-info-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    #propName {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      color: var(--white);
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    #propLocation {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      font-family: 'Inter', sans-serif;
+      margin-top: 3px;
+    }
+
+    #propBadge { margin-left: auto; }
+
+    /* ===== THUMBNAIL GRID ===== */
+    .thumb-section {
+      background: var(--ivory-light);
+      padding: 24px 0 32px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 6px;
+      max-height: 220px;
+      overflow: hidden;
+    }
+
+    .gallery-thumb {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color var(--transition), opacity var(--transition);
+      opacity: 0.65;
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-thumb:hover {
+      opacity: 0.9;
+    }
+
+    .gallery-thumb:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-thumb.active {
+      border-color: var(--gold);
+      opacity: 1;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(22,22,18,0.97);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lb-img-wrap {
+      position: relative;
+      max-width: 90vw;
+      max-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-img-wrap img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .lb-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .lb-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .lb-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .lb-nav:hover {
+      background: var(--gold);
+      color: var(--charcoal-dark);
+    }
+
+    .lb-nav.prev { left: 16px; }
+    .lb-nav.next { right: 16px; }
+
+    .lb-counter {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.55);
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ===== DETAIL SECTION ===== */
+    .detail-section {
+      padding: 64px 0 80px;
+      background: var(--ivory);
+    }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .detail-desc .breadcrumb-link {
+      font-size: 0.78rem;
+      opacity: 0.55;
+      margin-bottom: 12px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .detail-desc .breadcrumb-link a {
+      color: var(--text-soft);
+    }
+
+    #descTitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+      color: var(--charcoal-dark);
+    }
+
+    #descText {
+      color: var(--text-soft);
+      line-height: 1.82;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    /* ===== HIGHLIGHTS ===== */
+    .highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .highlight-item .hi-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gold-dim);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .highlight-item .hi-text {
+      font-size: 0.82rem;
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .highlight-item .hi-text small {
+      font-weight: 400;
+      color: var(--text-soft);
+      display: block;
+      font-size: 0.74rem;
+    }
+
+    /* ===== UNITS TABLE ===== */
+    .units-section {
+      margin-top: 32px;
+    }
+
+    .units-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+      color: var(--charcoal-dark);
+    }
+
+    .unit-group-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .units-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .units-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: var(--charcoal-dark);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .units-table th:first-child {
+      border-radius: var(--radius-sm) 0 0 0;
+    }
+
+    .units-table th:last-child {
+      border-radius: 0 var(--radius-sm) 0 0;
+    }
+
+    .units-table td {
+      padding: 12px 14px;
+      font-size: 0.875rem;
+      border-bottom: 1px solid var(--border-light);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-soft);
+      background: var(--white);
+    }
+
+    .units-table td:first-child {
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .units-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .unit-price {
+      color: var(--gold);
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .detail-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 20px);
+    }
+
+    .price-card {
+      background: var(--charcoal-dark);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .price-card .pc-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.55);
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .price-card .pc-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .price-card .pc-note {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .price-card .btn {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+      border: 1px solid var(--border-light);
+    }
+
+    .contact-card h4 {
+      font-size: 1rem;
+      margin-bottom: 16px;
+      color: var(--charcoal-dark);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.875rem;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .contact-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-row a {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .contact-row a:hover {
+      color: var(--gold);
+    }
+
+    .contact-row svg {
+      flex-shrink: 0;
+      opacity: 0.55;
+      color: var(--olive);
+    }
+
+    /* ===== BOOKING CARD ===== */
+    .booking-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .booking-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--charcoal-dark);
+    }
+
+    .booking-card > p {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .booking-form .form-group {
+      margin-bottom: 12px;
+    }
+
+    .booking-form label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+      margin-bottom: 5px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .booking-form input,
+    .booking-form textarea,
+    .booking-form select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.86rem;
+      color: var(--charcoal);
+      background: var(--white);
+      outline: none;
+      transition: border-color var(--transition);
+    }
+
+    .booking-form input:focus,
+    .booking-form textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .booking-form textarea {
+      min-height: 72px;
+      resize: none;
+    }
+
+    .booking-form .btn {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .detail-layout {
+        grid-template-columns: 1fr;
+      }
+      .detail-sidebar {
+        position: static;
+        order: -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .price-card { margin-bottom: 0; }
+      .contact-card { margin-bottom: 0; }
+      .booking-card { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .detail-hero-carousel { height: 300px; }
+      .highlights { grid-template-columns: 1fr; }
+      .detail-sidebar { grid-template-columns: 1fr; }
+      .thumb-grid { max-height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Umnyango</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="properties.html" class="active">Properties</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary btn-sm">Book a Viewing</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO / CAROUSEL ===== -->
+  <div class="detail-hero">
+    <div class="detail-hero-carousel" id="heroCarousel">
+      <div class="hero-slides-track" id="heroSlides"></div>
+      <div class="carousel-overlay"></div>
+      <button class="hero-nav-btn prev" id="heroPrev" aria-label="Previous">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="hero-nav-btn next" id="heroNext" aria-label="Next">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="hero-counter" id="heroCounter">1 / 1</div>
+      <div class="hero-dots" id="heroDots"></div>
+      <button class="expand-btn" id="expandBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        View Fullscreen
+      </button>
+    </div>
+    <div class="hero-info-bar">
+      <div class="container">
+        <div class="hero-info-inner">
+          <div>
+            <h1 id="propName">Loading...</h1>
+            <p id="propLocation">...</p>
+          </div>
+          <div id="propBadge"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== THUMBNAILS ===== -->
+  <div class="thumb-section">
+    <div class="container">
+      <div class="thumb-grid" id="thumbGrid"></div>
+    </div>
+  </div>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <div class="lb-img-wrap">
+      <img id="lbImg" src="" alt="Property photo" />
+    </div>
+    <button class="lb-nav prev" id="lbPrev" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lb-nav next" id="lbNext" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lb-counter" id="lbCounter"></div>
+  </div>
+
+  <!-- ===== DETAIL SECTION ===== -->
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-layout">
+
+        <!-- Description + Units -->
+        <div class="detail-desc">
+          <p class="breadcrumb-link">
+            <a href="properties.html">Properties</a> &rsaquo; <span id="breadProp">...</span>
+          </p>
+          <span class="section-label">Property Overview</span>
+          <h2 id="descTitle">Loading...</h2>
+          <p id="descText"></p>
+
+          <div class="highlights" id="highlights"></div>
+
+          <div class="units-section" id="unitsSection"></div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="detail-sidebar">
+          <div class="price-card">
+            <div class="pc-label">Monthly Rental</div>
+            <div class="pc-price">R3,000</div>
+            <div class="pc-note">Water & electricity included</div>
+            <a href="#bookingCard" class="btn btn-primary" style="margin-top:16px;">Book a Viewing</a>
+          </div>
+
+          <div class="contact-card">
+            <h4>Contact Us Directly</h4>
+            <div class="contact-row">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.09.86.24 1.71.45 2.54a2 2 0 0 1-.45 2.11L7.91 9.9a16 16 0 0 0 6.19 6.19l.96-.96a2 2 0 0 1 2.11-.45c.83.21 1.68.36 2.54.45A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+27728287116">+27 72 828 7116</a>
+            </div>
+            <div class="contact-row">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <a href="https://wa.me/27728287116" target="_blank" rel="noopener">WhatsApp Us</a>
+            </div>
+            <div class="contact-row">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:Thandolwethu@gems.gov.za">Email Us</a>
+            </div>
+          </div>
+
+          <div class="booking-card" id="bookingCard">
+            <h4>Book a Viewing</h4>
+            <p>Fill in your details and we'll confirm a time via WhatsApp.</p>
+            <form class="booking-form" id="bookingForm">
+              <div class="form-group">
+                <label for="bName">Full Name *</label>
+                <input type="text" id="bName" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="bPhone">Phone Number *</label>
+                <input type="tel" id="bPhone" placeholder="+27 XX XXX XXXX" required />
+              </div>
+              <div class="form-group">
+                <label for="bDate">Preferred Date</label>
+                <input type="date" id="bDate" />
+              </div>
+              <div class="form-group">
+                <label for="bMsg">Message</label>
+                <textarea id="bMsg" placeholder="Any questions or notes..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-whatsapp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                Send via WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-body">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">Umnyango<span>Property Investment & Rental</span></a>
+            <p>Providing affordable, high-quality rental accommodation across Vosloorus, Ekurhuleni since 2018.</p>
+            <p class="footer-est">Est. 2018 &middot; Vosloorus, Ekurhuleni</p>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a><a href="properties.html">Our Properties</a><a href="about.html">About Umnyango</a><a href="contact.html">Contact Us</a>
+            <h4 class="footer-links-sub">Properties</h4>
+            <a href="property-detail.html?p=1">Extension 26</a><a href="property-detail.html?p=2">Marimba Extension 9</a><a href="property-detail.html?p=3">Eastfield</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Vosloorus, Ekurhuleni, Gauteng</p>
+            <p><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.09.86.24 1.71.45 2.54a2 2 0 0 1-.45 2.11L7.91 9.9a16 16 0 0 0 6.19 6.19l.96-.96a2 2 0 0 1 2.11-.45c.83.21 1.68.36 2.54.45A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:+27728287116">+27 72 828 7116</a></p>
+            <p><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> <a href="mailto:Thandolwethu@gems.gov.za">Thandolwethu@gems.gov.za</a></p>
+            <a href="https://wa.me/27728287116" class="footer-wa-link" target="_blank" rel="noopener">Chat on WhatsApp &rarr;</a>
+            <div class="footer-hours">Mon–Fri: 8am – 5pm<br>Sat: 9am – 1pm<br>Sun: Closed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container"><div class="footer-bottom"><span>&copy; 2026 Umnyango Property. All rights reserved.</span><span>Built by <a href="https://kraftstudios.co.za" target="_blank" rel="noopener">KRAFT Studios</a></span></div></div>
+  </footer>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/27728287116" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    // ===== NAV SCROLL =====
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ===== MOBILE NAV =====
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    // ===== CUSTOM CURSOR =====
+    const cursorRing = document.getElementById('cursorRing');
+    const cursorDot = document.getElementById('cursorDot');
+    const interactiveSelectors = ['a', 'button', '.btn', '.prop-card-cta', '.nav-toggle', '.nav-links a', '.whatsapp-float a', '.gallery-thumb', '.hero-nav-btn', '.expand-btn', '.hero-dot', '.lb-nav', '.lb-close'];
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    const trailDots = [];
+    for (let i = 0; i < 8; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-trail-dot';
+      document.body.appendChild(dot);
+      trailDots.push({ el: dot, x: mouseX, y: mouseY });
+    }
+
+    document.addEventListener('mousemove', (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+      cursorRing.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+      trailDots.forEach((dot, i) => {
+        setTimeout(() => {
+          dot.el.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+          dot.el.style.opacity = `${0.5 - i * 0.06}`;
+        }, i * 30);
+      });
+    }, { passive: true });
+
+    document.addEventListener('mouseover', (event) => {
+      if (interactiveSelectors.some(selector => event.target.closest(selector))) {
+        cursorRing.classList.add('hover');
+        cursorDot.classList.add('hover');
+      }
+    });
+    document.addEventListener('mouseout', (event) => {
+      if (interactiveSelectors.some(selector => event.target.closest(selector))) {
+        cursorRing.classList.remove('hover');
+        cursorDot.classList.remove('hover');
+      }
+    });
+
+    document.addEventListener('mousedown', () => {
+      cursorRing.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) scale(0.75)`;
+    });
+    document.addEventListener('mouseup', () => {
+      cursorRing.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) scale(1)`;
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursorRing.style.opacity = '0';
+      cursorDot.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      cursorRing.style.opacity = '0.6';
+      cursorDot.style.opacity = '0.95';
+    });
+
+    // ===== PROPERTIES DATA =====
+    const PROPERTIES = {
+      1: {
+        name: 'Extension 26',
+        location: 'Vosloorus Extension 26, Ekurhuleni',
+        totalUnits: 6,
+        description: 'A newly renovated, modern property in the well-established suburb of Vosloorus Extension 26. The units feature high-quality finishes throughout — spotlights set into white PVC ceilings, built-in wardrobes, large format tiled floors, and private bathrooms tiled in bold black-and-white African-inspired geometric patterns. The property is secure, well-lit, and professionally managed. Conveniently situated close to public transport routes, schools, shopping centres, clinics, and community facilities.',
+        highlights: [
+          { icon: 'home', label: 'Modern Finishes', sub: 'Built-in wardrobes · Spotlights' },
+          { icon: 'shield', label: 'Secure & Gated', sub: 'Well-lit, safe environment' },
+          { icon: 'bus', label: 'Transport Access', sub: 'Close to major routes' },
+          { icon: 'dollar', label: 'R3,000/month', sub: 'Water & electricity included' },
+        ],
+        images: [
+          'images/Ext 26/photo-01.jpeg','images/Ext 26/photo-02.jpeg','images/Ext 26/photo-03.jpeg',
+          'images/Ext 26/photo-04.jpeg','images/Ext 26/photo-05.jpeg','images/Ext 26/photo-06.jpeg',
+          'images/Ext 26/photo-07.jpeg','images/Ext 26/photo-08.jpeg','images/Ext 26/photo-09.jpeg',
+          'images/Ext 26/photo-10.jpeg','images/Ext 26/photo-11.jpeg','images/Ext 26/photo-12.jpeg',
+        ],
+        unitGroups: [{
+          title: 'Self-Contained Units',
+          units: [
+            { name:'Unit 1', spec:'Room · Built-in wardrobe · Private bathroom · Kitchenette', available:true },
+            { name:'Unit 2', spec:'Room · Built-in wardrobe · Private bathroom · Kitchenette', available:true },
+            { name:'Unit 3', spec:'Room · Built-in wardrobe · Private bathroom · Kitchenette', available:true },
+            { name:'Unit 4', spec:'Room · Built-in wardrobe · Private bathroom · Kitchenette', available:true },
+            { name:'Unit 5', spec:'Room · Built-in wardrobe · Private bathroom · Kitchenette', available:true },
+            { name:'Unit 6', spec:'Room · Built-in wardrobe · Private bathroom · Kitchenette', available:true },
+          ]
+        }]
+      },
+      2: {
+        name: 'Marimba Extension 9',
+        location: 'Vosloorus Marimba Ext 9, Ekurhuleni',
+        totalUnits: 4,
+        description: 'Located in Marimba Extension 9, this property provides affordable rental accommodation in a growing residential community with excellent accessibility to surrounding amenities. Modern and functional units in a safe, family-friendly environment with easy access to major transport routes, nearby schools, retail centres, and healthcare services. Water and electricity are included in the monthly rental.',
+        highlights: [
+          { icon: 'home', label: 'Modern Units', sub: 'Family-friendly design' },
+          { icon: 'shield', label: 'Secure Setting', sub: 'Safe residential area' },
+          { icon: 'users', label: 'Family Friendly', sub: 'Close to schools & parks' },
+          { icon: 'dollar', label: 'R3,000/month', sub: 'Water & electricity included' },
+        ],
+        images: [
+          'images/Ext 9/photo-01.jpeg','images/Ext 9/photo-02.jpeg',
+          'images/Ext 9/photo-03.jpeg','images/Ext 9/photo-04.jpeg',
+        ],
+        unitGroups: [{
+          title: 'Available Units',
+          units: [
+            { name:'Unit 1', spec:'Modern room · Bathroom access · Water & lights included', available:true },
+            { name:'Unit 2', spec:'Modern room · Bathroom access · Water & lights included', available:true },
+            { name:'Unit 3', spec:'Modern room · Bathroom access · Water & lights included', available:true },
+            { name:'Unit 4', spec:'Modern room · Bathroom access · Water & lights included', available:true },
+          ]
+        }]
+      },
+      3: {
+        name: 'Eastfield',
+        location: 'Vosloorus Eastfield, Ekurhuleni',
+        totalUnits: 4,
+        description: "Our Eastfield property continues Umnyango's vision of creating quality rental housing that supports thriving communities. Ideally located within Vosloorus, the property provides residents with convenient access to daily necessities while maintaining a welcoming neighbourhood atmosphere. Close proximity to schools, shopping facilities, public transport, and essential services.",
+        highlights: [
+          { icon: 'home', label: 'Quality Finishes', sub: 'Well-maintained units' },
+          { icon: 'dollar', label: 'Affordable', sub: 'R3,000/month all-in' },
+          { icon: 'bus', label: 'Transport Access', sub: 'Close to major routes' },
+          { icon: 'shield', label: 'Secure Setting', sub: 'Residential area' },
+        ],
+        images: [
+          'images/Eastfield/photo-01.png','images/Eastfield/photo-02.png','images/Eastfield/photo-03.png',
+          'images/Eastfield/photo-04.png','images/Eastfield/photo-05.png','images/Eastfield/photo-06.png',
+        ],
+        unitGroups: [{
+          title: 'Available Units',
+          units: [
+            { name:'Unit 1', spec:'Quality room · Secure setting · Water & lights included', available:true },
+            { name:'Unit 2', spec:'Quality room · Secure setting · Water & lights included', available:true },
+            { name:'Unit 3', spec:'Quality room · Secure setting · Water & lights included', available:true },
+            { name:'Unit 4', spec:'Quality room · Secure setting · Water & lights included', available:true },
+          ]
+        }]
+      }
+    };
+
+    // ===== ICONS =====
+    const icons = {
+      home:   '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+      shield: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      bus:    '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+      dollar: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+      users:  '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    };
+
+    // ===== LOAD PROPERTY =====
+    const pid = parseInt(new URLSearchParams(window.location.search).get('p')) || 1;
+    const prop = PROPERTIES[pid] || PROPERTIES[1];
+
+    document.getElementById('pageTitle').textContent = prop.name + ' | Umnyango';
+    document.getElementById('propName').textContent  = prop.name;
+    document.getElementById('propLocation').textContent = prop.location;
+    document.getElementById('breadProp').textContent = prop.name;
+    document.getElementById('descTitle').textContent = prop.name;
+    document.getElementById('descText').textContent  = prop.description;
+
+    // Badge
+    document.getElementById('propBadge').innerHTML =
+      '<span class="badge badge-available">' + prop.totalUnits + ' Units Available</span>';
+
+    // Highlights
+    const hlGrid = document.getElementById('highlights');
+    prop.highlights.forEach(h => {
+      const div = document.createElement('div');
+      div.className = 'highlight-item reveal';
+      div.innerHTML = '<div class="hi-icon">' + (icons[h.icon]||'') + '</div>' +
+        '<div class="hi-text">' + h.label + '<small>' + h.sub + '</small></div>';
+      hlGrid.appendChild(div);
+    });
+
+    // Units
+    const us = document.getElementById('unitsSection');
+    if (prop.unitGroups && prop.unitGroups.length) {
+      const h3 = document.createElement('h3');
+      h3.textContent = 'Available Units';
+      us.appendChild(h3);
+      prop.unitGroups.forEach(g => {
+        const gt = document.createElement('p');
+        gt.className = 'unit-group-title'; gt.textContent = g.title;
+        us.appendChild(gt);
+        const tbl = document.createElement('table');
+        tbl.className = 'units-table';
+        tbl.innerHTML = '<thead><tr><th>Unit</th><th>Features</th><th>Price</th><th>Status</th></tr></thead>';
+        const tbody = document.createElement('tbody');
+        g.units.forEach(u => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = '<td>' + u.name + '</td><td>' + u.spec + '</td>' +
+            '<td class="unit-price">R3,000</td>' +
+            '<td><span class="badge ' + (u.available ? 'badge-available' : 'badge-occupied') + '">' +
+            (u.available ? 'Available' : 'Occupied') + '</span></td>';
+          tbody.appendChild(tr);
+        });
+        tbl.appendChild(tbody);
+        us.appendChild(tbl);
+      });
+    }
+
+    // ===== CAROUSEL =====
+    let heroIdx = 0;
+    const images = prop.images;
+
+    function buildCarousel() {
+      const track = document.getElementById('heroSlides');
+      const dots  = document.getElementById('heroDots');
+      const thumbGrid = document.getElementById('thumbGrid');
+
+      if (!images || !images.length) {
+        document.getElementById('heroCarousel').innerHTML =
+          '<div class="no-photos"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" opacity="0.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span style="font-family:Inter,sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;opacity:.5">Photos Coming Soon</span></div>';
+        return;
+      }
+
+      images.forEach((src, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'hero-slide';
+        const img = document.createElement('img');
+        img.src = src; img.alt = prop.name + ' photo ' + (i+1);
+        img.loading = i === 0 ? 'eager' : 'lazy';
+        slide.appendChild(img);
+        track.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.className = 'hero-dot' + (i===0?' active':'');
+        dot.setAttribute('aria-label','Slide '+(i+1));
+        dot.addEventListener('click', () => goTo(i));
+        dots.appendChild(dot);
+
+        const thumb = document.createElement('div');
+        thumb.className = 'gallery-thumb' + (i===0?' active':'');
+        const ti = document.createElement('img');
+        ti.src = src; ti.alt=''; ti.loading='lazy';
+        thumb.appendChild(ti);
+        thumb.addEventListener('click', () => { goTo(i); });
+        thumb.addEventListener('dblclick', () => openLightbox(i));
+        thumbGrid.appendChild(thumb);
+      });
+
+      document.getElementById('heroCounter').textContent = '1 / ' + images.length;
+    }
+
+    function goTo(idx) {
+      heroIdx = (idx + images.length) % images.length;
+      document.getElementById('heroSlides').style.transform = 'translateX(-' + heroIdx * 100 + '%)';
+      document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('active', i===heroIdx));
+      document.getElementById('heroCounter').textContent = (heroIdx+1) + ' / ' + images.length;
+      document.querySelectorAll('.gallery-thumb').forEach((t,i) => t.classList.toggle('active', i===heroIdx));
+    }
+
+    document.getElementById('heroPrev').addEventListener('click', () => goTo(heroIdx - 1));
+    document.getElementById('heroNext').addEventListener('click', () => goTo(heroIdx + 1));
+    document.getElementById('heroCarousel').addEventListener('click', e => {
+      if (e.target.closest('.hero-nav-btn') || e.target.closest('.expand-btn') || e.target.closest('.hero-dots')) return;
+      openLightbox(heroIdx);
+    });
+    document.getElementById('expandBtn').addEventListener('click', () => openLightbox(heroIdx));
+
+    // Touch swipe
+    let startX = 0;
+    const carousel = document.getElementById('heroCarousel');
+    carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive:true });
+    carousel.addEventListener('touchend',   e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(heroIdx + (diff > 0 ? 1 : -1));
+    }, { passive:true });
+
+    // ===== LIGHTBOX =====
+    let lbIdx = 0;
+    const lb    = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+
+    function openLightbox(idx) {
+      lbIdx = idx;
+      lbImg.src = images[lbIdx];
+      document.getElementById('lbCounter').textContent = (lbIdx+1) + ' / ' + images.length;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function lbGoTo(idx) {
+      lbIdx = (idx + images.length) % images.length;
+      lbImg.src = images[lbIdx];
+      document.getElementById('lbCounter').textContent = (lbIdx+1) + ' / ' + images.length;
+    }
+
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', () => lbGoTo(lbIdx - 1));
+    document.getElementById('lbNext').addEventListener('click', () => lbGoTo(lbIdx + 1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft')  lbGoTo(lbIdx - 1);
+      if (e.key === 'ArrowRight') lbGoTo(lbIdx + 1);
+    });
+
+    // ===== BOOKING FORM =====
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name  = document.getElementById('bName').value.trim();
+      const phone = document.getElementById('bPhone').value.trim();
+      const date  = document.getElementById('bDate').value;
+      const msg   = document.getElementById('bMsg').value.trim();
+      if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+      let text = 'Hi Umnyango, I would like to book a viewing for ' + prop.name + '.';
+      text += '\n\nName: ' + name;
+      text += '\nPhone: ' + phone;
+      if (date) text += '\nPreferred Date: ' + date;
+      if (msg)  text += '\n\n' + msg;
+      window.open('https://wa.me/27728287116?text=' + encodeURIComponent(text), '_blank');
+    });
+
+    // Observe newly added reveal elements after highlights are injected
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.observed)').forEach(el => {
+        el.classList.add('observed');
+        observer.observe(el);
+      });
+    }, 100);
+
+    buildCarousel();
+
+    console.log('%c Umnyango ✦ Luxury Living ', 'background: #161612; color: #c9a84c; font-size: 14px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+    console.log('%c Built with passion by KRAFT Studios ', 'background: #2a2a24; color: #faf6ef; font-size: 12px; padding: 6px 16px; border-radius: 4px;');
+  </script>
+</body>
+</html>

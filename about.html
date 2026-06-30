@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Umnyango Hotel & Suites</title>
+  <meta name="description" content="Umnyango was established in 2018 with a vision to transform underutilised spaces into thriving rental communities in Vosloorus, Ekurhuleni. Learn our story, vision, and values." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== PAGE HEADER OVERRIDES ===== */
+    .page-header {
+      padding: 120px 0 80px;
+    }
+
+    .page-header .hs-overlay {
+      background: linear-gradient(160deg, rgba(22,22,18,0.92) 0%, rgba(45,54,32,0.75) 55%, rgba(22,22,18,0.95) 100%);
+    }
+
+    /* ===== OVERVIEW ===== */
+    .overview-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 72px;
+      align-items: flex-start;
+    }
+
+    .overview-content .founded-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--charcoal-dark);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .overview-content .founded-badge span {
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+    }
+
+    .overview-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--charcoal-dark);
+      margin-bottom: 14px;
+      margin-top: 28px;
+    }
+
+    .overview-content h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .overview-content p {
+      color: var(--text-soft);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    .overview-content blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 18px 24px;
+      margin: 28px 0;
+      background: var(--gold-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+
+    .vm-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+    }
+
+    .vm-card {
+      background: var(--ivory-light);
+      border-radius: var(--radius-lg);
+      padding: 26px 28px;
+      box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--gold);
+      transition: all var(--transition);
+    }
+
+    .vm-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .vm-card h3 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .vm-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.74;
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline-section {
+      padding: 100px 0;
+      background: var(--charcoal-dark);
+    }
+
+    .timeline-head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .timeline-track {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(201,168,76,0.2);
+      transform: translateX(-50%);
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 64px;
+      position: relative;
+    }
+
+    .tl-item:last-child { margin-bottom: 0; }
+
+    .tl-content {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.14);
+      border-radius: var(--radius-lg);
+      padding: 28px 30px;
+      transition: background var(--transition);
+    }
+
+    .tl-content:hover {
+      background: rgba(255,255,255,0.07);
+    }
+
+    .tl-item.left  .tl-content { grid-column: 1; }
+    .tl-item.left  .tl-space   { grid-column: 2; }
+    .tl-item.left  .tl-empty   { grid-column: 3; }
+    .tl-item.right .tl-empty   { grid-column: 1; }
+    .tl-item.right .tl-space   { grid-column: 2; }
+    .tl-item.right .tl-content { grid-column: 3; }
+
+    .tl-space {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 24px;
+      position: relative;
+    }
+
+    .tl-dot {
+      width: 16px;
+      height: 16px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 3px solid var(--charcoal-dark);
+      box-shadow: 0 0 0 2px var(--gold);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .tl-year {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .tl-content h3 {
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .tl-content p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.74;
+    }
+
+    .tl-tag {
+      display: inline-block;
+      background: var(--gold-dim);
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ===== AREAS ===== */
+    .areas-section {
+      background: var(--ivory);
+      padding: 100px 0;
+    }
+
+    .areas-head {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .areas-head .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .area-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.4s var(--ease-out);
+    }
+
+    .area-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border);
+    }
+
+    .area-photo {
+      height: 220px;
+      overflow: hidden;
+      background: var(--ivory-dark);
+    }
+
+    .area-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease-out);
+    }
+
+    .area-card:hover .area-photo img {
+      transform: scale(1.08);
+    }
+
+    .area-body {
+      padding: 28px 24px 24px;
+    }
+
+    .area-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      color: var(--charcoal-dark);
+      font-weight: 700;
+    }
+
+    .area-location {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .area-body p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.72;
+    }
+
+    /* ===== VALUES ===== */
+    .values-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .values-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .values-head .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .value-card {
+      display: flex;
+      gap: 20px;
+      background: var(--ivory-light);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s var(--ease-out);
+      align-items: flex-start;
+      border: 1px solid var(--border-light);
+      border-left: 3px solid transparent;
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-left-color: var(--gold);
+      border-color: var(--border);
+    }
+
+    .value-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-dim);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 44px;
+    }
+
+    .value-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--charcoal-dark);
+      font-weight: 700;
+    }
+
+    .value-content p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.74;
+    }
+
+    /* ===== TRUST STRIP ===== */
+    .trust-strip {
+      background: var(--charcoal-dark);
+      padding: 0;
+    }
+
+    .trust-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-cell {
+      padding: 32px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .trust-cell:last-child { border-right: none; }
+
+    .trust-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .trust-desc {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== CTA ===== */
+    .about-cta {
+      background: linear-gradient(135deg, var(--olive-deep) 0%, var(--charcoal-dark) 100%);
+      padding: 72px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08), transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(106,122,74,0.06), transparent 50%);
+      pointer-events: none;
+    }
+
+    .about-cta .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--white);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .about-cta p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.02rem;
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.8;
+    }
+
+    .about-cta .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1020px) {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+      .vm-stack {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .vm-card {
+        flex: 1;
+        min-width: 240px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .areas-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .values-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .trust-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+      .trust-cell:nth-child(2) {
+        border-right: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .timeline-track::before {
+        left: 20px;
+      }
+      .tl-item {
+        display: block;
+        padding-left: 52px;
+        position: relative;
+      }
+      .tl-space {
+        position: absolute;
+        left: 0;
+        top: 0;
+        flex-direction: row;
+        padding: 22px 0 0 12px;
+      }
+      .tl-dot {
+        margin-right: 0;
+      }
+      .tl-empty {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .areas-grid {
+        grid-template-columns: 1fr;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      .trust-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Umnyango<span>Residences</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="properties.html">Properties</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary btn-sm">Book a Viewing</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="hs-slides" id="hsSlides"></div>
+    <div class="hs-overlay"></div>
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; About Us</p>
+      <h1>About Umnyango</h1>
+      <p>Property investment and rental dedicated to creating opportunities through quality, affordable housing in Vosloorus, Ekurhuleni.</p>
+    </div>
+  </header>
+
+  <script>
+    // ===== SLIDESHOW =====
+    (function(){
+      var imgs = [
+        'images/Ext 26/photo-03.jpeg',
+        'images/Eastfield/photo-02.png',
+        'images/Ext 9/photo-02.jpeg',
+        'images/Ext 26/photo-08.jpeg',
+        'images/Eastfield/photo-05.png',
+        'images/Ext 26/photo-11.jpeg'
+      ];
+      var wrap = document.getElementById('hsSlides');
+      var slides = imgs.map(function(src, i){
+        var d = document.createElement('div');
+        d.className = 'hs-slide' + (i === 0 ? ' active' : '');
+        d.style.backgroundImage = "url('" + src + "')";
+        wrap.appendChild(d);
+        return d;
+      });
+      var cur = 0;
+      setInterval(function(){
+        slides[cur].classList.remove('active');
+        cur = (cur + 1) % slides.length;
+        slides[cur].classList.add('active');
+      }, 5000);
+    })();
+  </script>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="overview-section">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="overview-content reveal">
+          <div class="founded-badge">Est. &nbsp;<span>2018</span>&nbsp; · Vosloorus, Ekurhuleni</div>
+          <span class="section-label">Our Story</span>
+          <h2>Transforming Underutilised Spaces into Thriving Communities</h2>
+          <p>Umnyango was founded in 2018 with a clear and purposeful vision: to transform underutilised spaces into safe, modern, and sustainable rental communities across Ekurhuleni.</p>
+          <p>Our name — <strong>Umnyango</strong> — means <strong>door</strong> or <strong>gateway</strong> in isiZulu. It reflects our core belief that every home is more than just a place to live. It is the gateway to stability, growth, and a better future. When we open a door for a tenant, we open an opportunity for them to build something greater.</p>
+          <blockquote>"We believe that access to quality accommodation is fundamental to unlocking individual and community potential. Every property we manage is designed with our tenants' comfort, security, and long-term wellbeing in mind."</blockquote>
+          <p>Today, Umnyango continues to grow its property portfolio in Ekurhuleni, providing professionally managed rental accommodation that balances affordability with quality — creating sustainable value for both tenants and investors.</p>
+          <h2>Our Approach</h2>
+          <p>We operate on a simple principle: responsible property ownership and management is the foundation of stable communities. We maintain open communication with all our tenants, carry out regular property inspections, and respond promptly to maintenance requests.</p>
+          <p>Choosing Umnyango means choosing a landlord that values its tenants and invests in the communities it serves — clean, safe, well-maintained properties with responsive, professional management.</p>
+        </div>
+
+        <div class="vm-stack reveal reveal-delay-2">
+          <div class="vm-card">
+            <h3>Our Vision</h3>
+            <p>To unlock greatness in communities by transforming unused spaces into thriving, income-generating properties that improve lives.</p>
+          </div>
+          <div class="vm-card">
+            <h3>Our Mission</h3>
+            <p>To deliver affordable, safe, and high-quality rental housing solutions that improve living standards while ensuring long-term financial returns through responsible property ownership and management.</p>
+          </div>
+          <div class="vm-card">
+            <h3>Our Promise</h3>
+            <p>At Umnyango, we believe that every door we open creates an opportunity for someone to build a brighter future — one home, one family, and one community at a time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TIMELINE ===== -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="timeline-head reveal">
+        <span class="section-label">Our Journey</span>
+        <h2 class="section-title light">How We Got Here</h2>
+        <p class="section-subtitle light" style="margin:0 auto;">From a single property in 2018 to three thriving locations across Vosloorus — this is the Umnyango story.</p>
+      </div>
+      <div class="timeline-track">
+        <div class="tl-item left reveal">
+          <div class="tl-content">
+            <span class="tl-tag">2018</span>
+            <h3>Umnyango Is Founded</h3>
+            <p>Umnyango is established in Vosloorus, Ekurhuleni, with the first rental property at Extension 26. A vision takes root: affordable, quality housing for all.</p>
+          </div>
+          <div class="tl-space"><div class="tl-dot"></div></div>
+          <div class="tl-empty"></div>
+        </div>
+        <div class="tl-item right reveal reveal-delay-1">
+          <div class="tl-empty"></div>
+          <div class="tl-space"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <span class="tl-tag">2020</span>
+            <h3>First Expansion</h3>
+            <p>Growing demand leads to the acquisition of a second property at Marimba Extension 9, serving a growing community with modern, functional rental units.</p>
+          </div>
+        </div>
+        <div class="tl-item left reveal reveal-delay-2">
+          <div class="tl-content">
+            <span class="tl-tag">2024</span>
+            <h3>Third Property Added</h3>
+            <p>The Eastfield property joins the Umnyango portfolio, expanding our reach across Vosloorus and reinforcing our commitment to creating quality homes at every price point.</p>
+          </div>
+          <div class="tl-space"><div class="tl-dot"></div></div>
+          <div class="tl-empty"></div>
+        </div>
+        <div class="tl-item right reveal reveal-delay-3">
+          <div class="tl-empty"></div>
+          <div class="tl-space"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <span class="tl-tag">2026</span>
+            <h3>10+ Happy Tenants</h3>
+            <p>With over ten satisfied tenants across three properties, Umnyango looks to the future with plans to continue expanding and unlocking greatness — one home at a time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AREAS ===== -->
+  <section class="areas-section">
+    <div class="container">
+      <div class="areas-head reveal">
+        <span class="section-label">Where We Operate</span>
+        <h2 class="section-title">Our Properties in Vosloorus</h2>
+        <p class="section-subtitle">All three Umnyango properties are located across Vosloorus, Ekurhuleni — close to schools, transport, shopping, and healthcare.</p>
+      </div>
+      <div class="areas-grid">
+        <div class="area-card reveal reveal-delay-1">
+          <div class="area-photo"><img src="images/Ext 26/photo-03.jpeg" alt="Extension 26" loading="lazy" /></div>
+          <div class="area-body">
+            <p class="area-location">Vosloorus, Ekurhuleni</p>
+            <h3>Extension 26</h3>
+            <p>Modern, newly renovated units in the well-established suburb of Vosloorus Extension 26. Quality finishes, built-in wardrobes, tiled floors, and private bathrooms with bold African-inspired tilework.</p>
+          </div>
+        </div>
+        <div class="area-card reveal reveal-delay-2">
+          <div class="area-photo"><img src="images/Ext 9/photo-02.jpeg" alt="Marimba Extension 9" loading="lazy" /></div>
+          <div class="area-body">
+            <p class="area-location">Vosloorus Marimba, Ekurhuleni</p>
+            <h3>Marimba Extension 9</h3>
+            <p>Modern and functional rental units in a growing residential community with excellent accessibility to surrounding amenities. Easy access to major transport routes, nearby schools, retail centres, and healthcare.</p>
+          </div>
+        </div>
+        <div class="area-card reveal reveal-delay-3">
+          <div class="area-photo"><img src="images/Eastfield/photo-03.png" alt="Eastfield" loading="lazy" /></div>
+          <div class="area-body">
+            <p class="area-location">Vosloorus Eastfield, Ekurhuleni</p>
+            <h3>Eastfield</h3>
+            <p>Affordable, quality rental accommodation ideally located within Vosloorus, providing residents with convenient access to daily necessities in a welcoming neighbourhood atmosphere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VALUES ===== -->
+  <section class="values-section">
+    <div class="container">
+      <div class="values-head reveal">
+        <span class="section-label">What We Stand For</span>
+        <h2 class="section-title">Our Core Values</h2>
+        <p class="section-subtitle">These five principles guide how we manage our properties and how we treat every tenant in every interaction.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-num">01</div>
+          <div class="value-content"><h3>Integrity</h3><p>We conduct business honestly, transparently, and ethically. No hidden fees, no surprises — just fair and open dealings at every step.</p></div>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-num">02</div>
+          <div class="value-content"><h3>Quality</h3><p>We maintain high standards in every property we own and manage. Quality is not a feature — it is our baseline commitment to every tenant.</p></div>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-num">03</div>
+          <div class="value-content"><h3>Community</h3><p>We contribute to stronger, more vibrant neighbourhoods. We believe investment in affordable housing is investment in the community's future.</p></div>
+        </div>
+        <div class="value-card reveal reveal-delay-4">
+          <div class="value-num">04</div>
+          <div class="value-content"><h3>Reliability</h3><p>We provide dependable service and responsive property management. When something needs attention, we act quickly and professionally.</p></div>
+        </div>
+        <div class="value-card reveal reveal-delay-5">
+          <div class="value-num">05</div>
+          <div class="value-content"><h3>Growth</h3><p>We continuously invest in improving our properties and expanding housing opportunities across Ekurhuleni — for tenants and investors alike.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-cell"><div class="trust-label">Est. 2018</div><div class="trust-desc">8+ years serving Vosloorus</div></div>
+        <div class="trust-cell"><div class="trust-label">3 Properties</div><div class="trust-desc">Across Vosloorus, Ekurhuleni</div></div>
+        <div class="trust-cell"><div class="trust-label">10+ Tenants</div><div class="trust-desc">Happy, long-term residents</div></div>
+        <div class="trust-cell"><div class="trust-label">Same-Day Reply</div><div class="trust-desc">We respond to all enquiries fast</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <section class="about-cta reveal">
+    <div class="container">
+      <h2>Looking for a Place to Stay?</h2>
+      <p>Explore our available units or contact us directly — we are here to help you find the right home.</p>
+      <div class="btn-group">
+        <a href="properties.html" class="btn btn-primary">View Properties</a>
+        <a href="contact.html" class="btn btn-ghost-light">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-body">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">Umnyango<span>Residences</span></a>
+            <p>Providing affordable, high-quality rental accommodation across Vosloorus, Ekurhuleni since 2018.</p>
+            <p class="footer-est">Est. 2018 &middot; Vosloorus, Ekurhuleni</p>
+          </div>
+
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Our Properties</a>
+            <a href="about.html">About Umnyango</a>
+            <a href="contact.html">Contact Us</a>
+            <h4 class="footer-links-sub">Properties</h4>
+            <a href="property-detail.html?p=1">Extension 26</a>
+            <a href="property-detail.html?p=2">Marimba Extension 9</a>
+            <a href="property-detail.html?p=3">Eastfield</a>
+          </div>
+
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Vosloorus, Ekurhuleni, Gauteng
+            </p>
+            <p>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.09.86.24 1.71.45 2.54a2 2 0 0 1-.45 2.11L7.91 9.9a16 16 0 0 0 6.19 6.19l.96-.96a2 2 0 0 1 2.11-.45c.83.21 1.68.36 2.54.45A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+27728287116">+27 72 828 7116</a>
+            </p>
+            <p>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:Thandolwethu@gems.gov.za">Thandolwethu@gems.gov.za</a>
+            </p>
+            <a href="https://wa.me/27728287116" class="footer-wa-link" target="_blank" rel="noopener">Chat on WhatsApp &rarr;</a>
+            <div class="footer-hours">Mon–Fri: 8am – 5pm<br>Sat: 9am – 1pm<br>Sun: Closed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Umnyango Property. All rights reserved.</span>
+        <span>Built by <a href="https://kraftstudios.co.za" target="_blank" rel="noopener">KRAFT Studios</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/27728287116" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    // ===== NAV SCROLL =====
+    var nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ===== MOBILE NAV =====
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    toggle.addEventListener('click', function() {
+      var open = links.classList.toggle('open');
+      toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    links.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ===== SCROLL REVEAL =====
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) {
+      observer.observe(el);
+    });
+
+    // ===== CUSTOM CURSOR =====
+    var cursorRing = document.getElementById('cursorRing');
+    var cursorDot = document.getElementById('cursorDot');
+    var interactiveSelectors = ['a', 'button', '.btn', '.nav-toggle', '.nav-links a', '.whatsapp-float a', '.area-card', '.value-card', '.vm-card', '.tl-content'];
+
+    var mouseX = window.innerWidth / 2;
+    var mouseY = window.innerHeight / 2;
+
+    // Create cursor trail dots
+    var trailDots = [];
+    for (var i = 0; i < 8; i++) {
+      var dot = document.createElement('div');
+      dot.className = 'cursor-trail-dot';
+      document.body.appendChild(dot);
+      trailDots.push({ el: dot, x: mouseX, y: mouseY });
+    }
+
+    document.addEventListener('mousemove', function(event) {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      cursorDot.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0)';
+      cursorRing.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0)';
+
+      // Trail animation
+      trailDots.forEach(function(dot, i) {
+        setTimeout(function() {
+          dot.el.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0)';
+          dot.el.style.opacity = '' + (0.5 - i * 0.06);
+        }, i * 30);
+      });
+    }, { passive: true });
+
+    // Hover states for interactives
+    document.addEventListener('mouseover', function(event) {
+      if (interactiveSelectors.some(function(selector) { return event.target.closest(selector); })) {
+        cursorRing.classList.add('hover');
+        cursorDot.classList.add('hover');
+      }
+    });
+    document.addEventListener('mouseout', function(event) {
+      if (interactiveSelectors.some(function(selector) { return event.target.closest(selector); })) {
+        cursorRing.classList.remove('hover');
+        cursorDot.classList.remove('hover');
+      }
+    });
+
+    // Click effect
+    document.addEventListener('mousedown', function() {
+      cursorRing.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0) scale(0.75)';
+    });
+    document.addEventListener('mouseup', function() {
+      cursorRing.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0) scale(1)';
+    });
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', function() {
+      cursorRing.style.opacity = '0';
+      cursorDot.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', function() {
+      cursorRing.style.opacity = '0.6';
+      cursorDot.style.opacity = '0.95';
+    });
+
+    // ===== SMOOTH SCROLL FOR BREADCRUMB =====
+    console.log('%c Umnyango ✦ Luxury Living ', 'background: #161612; color: #c9a84c; font-size: 14px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+    console.log('%c Built with passion by KRAFT Studios ', 'background: #2a2a24; color: #faf6ef; font-size: 12px; padding: 6px 16px; border-radius: 4px;');
+  </script>
+</body>
+</html>

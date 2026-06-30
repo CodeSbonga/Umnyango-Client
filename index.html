@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Umnyango Residences | Luxury Accommodation, Vosloorus</title>
+  <meta name="description" content="Umnyango Residences — premium rental accommodation in Vosloorus, Ekurhuleni. Where luxury meets affordability. Established 2018." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <style>
+    /* ── CINEMATIC HERO ── */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      background: var(--ebony); overflow: hidden; color: var(--white); isolation: isolate;
+    }
+    .hero-media {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden;
+      background-image: url('home2.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .hero-media-bg {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(10,10,8,0.15) 0%, rgba(10,10,8,0.5) 30%, rgba(10,10,8,0.88) 60%, rgba(10,10,8,0.98) 100%);
+    }
+    .hero-media-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 25%, rgba(201,168,76,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 75%, rgba(201,168,76,0.08) 0%, transparent 40%);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(180deg, rgba(10,10,8,0.1) 0%, rgba(10,10,8,0.5) 30%, rgba(10,10,8,0.88) 60%, rgba(10,10,8,0.98) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 120px 0 60px; text-align: center; }
+
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 999px; padding: 8px 20px; color: var(--gold); font-size: 0.6rem;
+      font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+      margin-bottom: 32px; font-family: 'Inter', sans-serif;
+      backdrop-filter: blur(12px); position: relative; overflow: hidden;
+      opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 0.2s forwards;
+    }
+    .hero-pill .pulse-dot {
+      width: 7px; height: 7px; background: var(--gold); border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+      box-shadow: 0 0 12px rgba(201,168,76,0.6);
+    }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+      font-size: clamp(3.4rem, 8vw, 6.2rem); color: var(--white);
+      line-height: 0.92; margin-bottom: 24px; font-weight: 700; letter-spacing: -0.03em;
+    }
+    .hero-title .line { display: block; overflow: hidden; }
+    .hero-title .line span {
+      display: block; opacity: 0; transform: translateY(100%);
+      animation: slideUp 0.9s var(--ease-out) forwards;
+    }
+    .hero-title .line:nth-child(1) span { animation-delay: 0.3s; }
+    .hero-title .line:nth-child(2) span { animation-delay: 0.5s; }
+    .hero-title .line:nth-child(3) span { animation-delay: 0.7s; }
+    @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+    .hero-title .accent {
+      color: var(--gold); font-style: normal; position: relative; display: inline-block;
+    }
+    .hero-title .accent::after {
+      content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transform: scaleX(0); transform-origin: left;
+      animation: expandLine 0.8s var(--ease-out) 1s forwards;
+    }
+    @keyframes expandLine { to { transform: scaleX(1); } }
+
+    .hero-sub {
+      color: var(--text-light); font-size: 1rem; line-height: 1.85;
+      max-width: 600px; margin: 0 auto 36px;
+      opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 0.8s forwards;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 40px;
+      opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 1s forwards;
+    }
+    .hero-trust {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 1.2s forwards;
+    }
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px; border-radius: 999px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.6); font-size: 0.7rem; font-weight: 600;
+      font-family: 'Inter', sans-serif; backdrop-filter: blur(8px);
+      transition: all 0.4s var(--ease-out);
+    }
+    .trust-badge:hover { background: rgba(255,255,255,0.08); border-color: rgba(201,168,76,0.2); transform: translateY(-2px); }
+    .trust-badge .icon { width: 18px; height: 18px; border-radius: 50%; background: rgba(201,168,76,0.12); display: grid; place-items: center; color: var(--gold); font-size: 0.55rem; }
+
+    .hero-scroll {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px;
+      opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 1.6s forwards; cursor: pointer;
+    }
+    .hero-scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollLine 2s ease-in-out infinite; }
+    @keyframes scrollLine { 0%,100% { transform: scaleY(0.3); opacity: 0.3; } 50% { transform: scaleY(1); opacity: 1; } }
+    .hero-scroll span { font-size: 0.5rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.2); font-family: 'Inter', sans-serif; }
+
+    /* ── STATISTICS BAR ── */
+    .stats-bar {
+      background: var(--ebony); border-top: 1px solid rgba(201,168,76,0.08);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid rgba(201,168,76,0.05);
+    }
+    .stat-cell {
+      padding: 32px 20px; text-align: center;
+      border-right: 1px solid rgba(201,168,76,0.05);
+      transition: background var(--transition);
+    }
+    .stat-cell:hover { background: rgba(201,168,76,0.03); }
+    .stat-num { display: block; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-family: 'Inter', sans-serif; }
+
+    /* ── SUITES SECTION ── */
+    .suites-section { padding: 100px 0 80px; background: var(--pearl); position: relative; }
+    .suites-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border-gold), transparent); }
+    .suites-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+
+    /* ── WHY SECTION ── */
+    .why-section { background: var(--white); padding: 100px 0; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
+    .why-card {
+      background: var(--pearl-light); border-radius: var(--radius-xl); padding: 32px 28px;
+      border: 1px solid var(--border-light); transition: all 0.5s var(--ease-out);
+      position: relative; overflow: hidden; transform-style: preserve-3d;
+    }
+    .why-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), var(--bronze), var(--gold)); opacity: 0; transition: opacity 0.5s var(--ease-out); }
+    .why-card:hover::before { opacity: 1; }
+    .why-card:hover { transform: translateY(-8px) rotateX(2deg); box-shadow: var(--shadow-xl); border-color: var(--border-gold); }
+    .why-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; color: var(--gold-dim); line-height: 1; margin-bottom: 14px; transition: all 0.3s; }
+    .why-card:hover .why-num { color: var(--gold); transform: scale(1.05); }
+    .why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 8px; color: var(--ebony); font-weight: 700; }
+    .why-card p { color: var(--text-soft); line-height: 1.75; font-size: 0.9rem; }
+
+    /* ── MAPS ── */
+    .maps-section { background: var(--ebony); padding: 100px 0; position: relative; overflow: hidden; }
+    .maps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .map-card { border-radius: var(--radius-xl); overflow: hidden; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); transition: all 0.5s var(--ease-out); }
+    .map-card:hover { transform: translateY(-8px); border-color: rgba(201,168,76,0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+    .map-card-label { display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: rgba(255,255,255,0.03); }
+    .map-card-label .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; box-shadow: 0 0 10px rgba(201,168,76,0.4); animation: pulse-dot 2s ease-in-out infinite; }
+    .map-card-label span { font-size: 0.82rem; color: var(--white); font-weight: 600; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--ebony) 0%, #141210 100%);
+      padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 50%, rgba(139,111,71,0.06) 0%, transparent 50%);
+    }
+    .cta-section::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', serif; color: var(--white);
+      font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 12px; letter-spacing: -0.02em; font-weight: 700;
+    }
+    .cta-section p { color: var(--text-light); font-size: 0.95rem; max-width: 560px; margin: 0 auto 30px; line-height: 1.75; }
+    .cta-section .btn-group { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* ── INTRO / ABOUT ── */
+    .intro-section { padding: 100px 0; background: linear-gradient(135deg, var(--pearl-light) 0%, var(--pearl) 50%, var(--cream) 100%); }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .intro-image { border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl); min-height: 420px; position: relative; }
+    .intro-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out); }
+    .intro-image:hover img { transform: scale(1.05); }
+    .intro-image::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(201,168,76,0.08); border-radius: var(--radius-xl); pointer-events: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) { .suites-grid { grid-template-columns: 1fr 1fr; } .why-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 900px) { .maps-grid { grid-template-columns: 1fr; } .intro-grid { grid-template-columns: 1fr; gap: 40px; } }
+    @media (max-width: 768px) { .hero-title { font-size: clamp(2.4rem, 9vw, 3.2rem); } }
+    @media (max-width: 640px) {
+      .suites-grid { grid-template-columns: 1fr; } .why-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-head { flex-direction: column; align-items: flex-start; }
+      .hero { min-height: 92vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  <div class="ambient-mesh"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Umnyango<span>Residences</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="properties.html">Properties</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary btn-sm">Book a Viewing</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-media"></div>
+    <div class="hero-media-bg"></div>
+
+    <div class="floating-particles" id="heroParticles"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="pulse-dot"></span>
+          Premium Accommodation · Ekurhuleni
+        </div>
+        <h1 class="hero-title">
+          <span class="line"><span>Refined Living,</span></span>
+          <span class="line"><span><em class="accent">Exceptional</em> Value</span></span>
+          <span class="line"><span>Your Journey Starts Here</span></span>
+        </h1>
+        <p class="hero-sub">
+          Experience premium rental accommodation at Umnyango Residences.
+          Curated spaces, modern finishes, and all-inclusive living —
+          designed for those who expect more.
+        </p>
+        <div class="hero-actions">
+          <a href="properties.html" class="btn btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Explore Suites
+          </a>
+          <a href="contact.html" class="btn btn-ghost">Schedule a Tour</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-badge"><span class="icon">✦</span> Established 2018</div>
+          <div class="trust-badge"><span class="icon">✦</span> Professionally Managed</div>
+          <div class="trust-badge"><span class="icon">✦</span> All-Inclusive</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats-bar" id="statsBar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-cell"><span class="stat-num" data-target="2018">2018</span><span class="stat-label">Established</span></div>
+        <div class="stat-cell"><span class="stat-num" data-target="3" data-suffix="">0</span><span class="stat-label">Properties</span></div>
+        <div class="stat-cell"><span class="stat-num" data-target="10" data-suffix="+">0</span><span class="stat-label">Happy Tenants</span></div>
+        <div class="stat-cell"><span class="stat-num" data-target="3000" data-prefix="R" data-suffix="/mo">R0</span><span class="stat-label">Monthly Rental</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SUITES ===== -->
+  <section class="suites-section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="section-label">Our Residences</span>
+          <h2 class="section-title">Curated <span class="gold">Living Spaces</span></h2>
+          <p class="section-subtitle">Each suite is meticulously appointed to the highest standard — premium quality, absolute comfort, and move-in ready.</p>
+        </div>
+        <a href="properties.html" class="btn btn-outline">View All</a>
+      </div>
+
+      <div class="suites-grid">
+        <div class="room-card tilt-3d reveal reveal-delay-1">
+          <div class="room-card-image shine-overlay">
+            <img src="images/Ext 26/photo-01.jpeg" alt="Extension 26 Suite" loading="lazy" />
+          </div>
+          <div class="room-card-body">
+            <h3>Extension 26</h3>
+            <p>Newly renovated with built-in wardrobes, spotlights, tiled floors, and private bathrooms with bold African-inspired tilework.</p>
+          </div>
+          <div class="room-card-footer">
+            <div class="room-price">R3,000 <small>per month inclusive</small></div>
+            <a href="property-detail.html?p=1" class="btn btn-secondary btn-sm">Details</a>
+          </div>
+        </div>
+
+        <div class="room-card tilt-3d reveal reveal-delay-2">
+          <div class="room-card-image shine-overlay">
+            <img src="images/Ext 9/photo-01.jpeg" alt="Marimba Extension 9 Suite" loading="lazy" />
+          </div>
+          <div class="room-card-body">
+            <h3>Marimba Ext 9</h3>
+            <p>Modern functional units in a safe growing community with easy access to transport routes, schools, and retail.</p>
+          </div>
+          <div class="room-card-footer">
+            <div class="room-price">R3,000 <small>per month inclusive</small></div>
+            <a href="property-detail.html?p=2" class="btn btn-secondary btn-sm">Details</a>
+          </div>
+        </div>
+
+        <div class="room-card tilt-3d reveal reveal-delay-3">
+          <div class="room-card-image shine-overlay">
+            <img src="images/Eastfield/photo-01.png" alt="Eastfield Suite" loading="lazy" />
+          </div>
+          <div class="room-card-body">
+            <h3>Eastfield</h3>
+            <p>Quality accommodation in a secure residential setting with professional management and convenient access to amenities.</p>
+          </div>
+          <div class="room-card-footer">
+            <div class="room-price">R3,000 <small>per month inclusive</small></div>
+            <a href="property-detail.html?p=3" class="btn btn-secondary btn-sm">Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY ===== -->
+  <section class="why-section">
+    <div class="container">
+      <div class="reveal" style="text-align:center;">
+        <span class="section-label" style="justify-content:center;">Why Choose Us</span>
+        <h2 class="section-title">The Umnyango <span class="gold">Standard</span></h2>
+        <p class="section-subtitle" style="margin:0 auto;">We set the benchmark for premium rental accommodation — quality, care, and community at every step.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal reveal-delay-1"><div class="why-num">01</div><h3>Premium Quality</h3><p>Modern finishes, spotlights, built-in wardrobes, bold tiling — maintained to a standard that residents are proud to call home.</p></div>
+        <div class="why-card reveal reveal-delay-2"><div class="why-num">02</div><h3>All-Inclusive</h3><p>R3,000/month covers water and electricity. One simple payment — no hidden costs, no surprises.</p></div>
+        <div class="why-card reveal reveal-delay-3"><div class="why-num">03</div><h3>Safe & Secure</h3><p>Established residential areas with security as a priority. Your peace of mind matters.</p></div>
+        <div class="why-card reveal reveal-delay-4"><div class="why-num">04</div><h3>Community First</h3><p>Close to schools, transport, healthcare, and shopping — everything you need nearby.</p></div>
+        <div class="why-card reveal reveal-delay-5"><div class="why-num">05</div><h3>Same-Day Response</h3><p>Maintenance requests answered fast. Call, email, or WhatsApp — we reply within hours.</p></div>
+        <div class="why-card reveal reveal-delay-1"><div class="why-num">06</div><h3>8+ Years of Trust</h3><p>Since 2018, Umnyango has delivered reliable, professional property management across Ekurhuleni.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAPS ===== -->
+  <section class="maps-section">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:44px;">
+        <span class="section-label">Locations</span>
+        <h2 class="section-title light">Prime Locations in <span class="gold">Vosloorus</span></h2>
+        <p class="section-subtitle light">Strategically located close to schools, transport corridors, and shopping precincts.</p>
+      </div>
+      <div class="maps-grid">
+        <div class="map-card reveal reveal-delay-1">
+          <div class="map-card-label"><div class="dot"></div><span>Extension 26</span></div>
+          <iframe src="https://maps.google.com/maps?q=Extension+26+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Extension 26"></iframe>
+        </div>
+        <div class="map-card reveal reveal-delay-2">
+          <div class="map-card-label"><div class="dot"></div><span>Marimba Ext 9</span></div>
+          <iframe src="https://maps.google.com/maps?q=Marimba+Extension+9+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Marimba Ext 9"></iframe>
+        </div>
+        <div class="map-card reveal reveal-delay-3">
+          <div class="map-card-label"><div class="dot"></div><span>Eastfield</span></div>
+          <iframe src="https://maps.google.com/maps?q=Eastfield+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Eastfield"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTRO ===== -->
+  <section class="intro-section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-image reveal-left">
+          <img src="images/Ext 26/photo-05.jpeg" alt="Umnyango living space" loading="lazy" />
+        </div>
+        <div class="reveal-right">
+          <span class="section-label">About</span>
+          <h2 class="section-title">Built on the Belief That Everyone Deserves a <span class="gold">Quality Home</span></h2>
+          <p style="color:var(--text-soft);line-height:1.8;margin-bottom:16px;">Founded in 2018 in Vosloorus, Ekurhuleni, Umnyango transforms underutilised spaces into thriving, affordable rental communities.</p>
+          <p style="color:var(--text-soft);line-height:1.8;margin-bottom:28px;">Our name means <em style="color:var(--gold);font-style:normal;">door</em> in isiZulu — a gateway to better living.</p>
+          <a href="about.html" class="btn btn-outline">Discover Our Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section reveal">
+    <div class="container" style="position:relative;z-index:1;">
+      <h2>Ready to Elevate Your Living?</h2>
+      <p>Explore our available suites or get in touch — we respond the same day.</p>
+      <div class="btn-group">
+        <a href="properties.html" class="btn btn-primary">Browse Suites</a>
+        <a href="contact.html" class="btn btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-body">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">Umnyango<span>Residences</span></a>
+            <p>Providing premium rental accommodation across Vosloorus, Ekurhuleni since 2018.</p>
+            <p class="footer-est">Est. 2018 · Vosloorus, Ekurhuleni</p>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Our Properties</a>
+            <a href="about.html">About Umnyango</a>
+            <a href="contact.html">Contact Us</a>
+            <h4 class="footer-links-sub">Properties</h4>
+            <a href="property-detail.html?p=1">Extension 26</a>
+            <a href="property-detail.html?p=2">Marimba Extension 9</a>
+            <a href="property-detail.html?p=3">Eastfield</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>Vosloorus, Ekurhuleni, Gauteng</p>
+            <p><a href="tel:+27728287116">+27 72 828 7116</a></p>
+            <p><a href="mailto:Thandolwethu@gems.gov.za">Thandolwethu@gems.gov.za</a></p>
+            <a href="https://wa.me/27728287116" class="footer-wa-link" target="_blank" rel="noopener">Chat on WhatsApp →</a>
+            <div class="footer-hours">Mon–Fri: 8am – 5pm<br>Sat: 9am – 1pm<br>Sun: Closed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Umnyango Residences. All rights reserved.</span>
+        <span>Built by <a href="https://kraftstudios.co.za" target="_blank" rel="noopener">KRAFT Studios</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="whatsapp-float">
+    <a href="https://wa.me/27728287116" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    // ===== SCROLL PROGRESS =====
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+    }, { passive: true });
+
+    // ===== NAV SCROLL =====
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+    // ===== MOBILE NAV =====
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }));
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    // ===== STATS COUNT-UP =====
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        statsObserver.unobserve(e.target);
+        e.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
+          const target = parseInt(el.dataset.target);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          if (target === 2018) return;
+          let start = 0;
+          const duration = 2200;
+          const step = (timestamp) => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const val = Math.floor((1 - Math.pow(1 - progress, 3)) * target);
+            el.textContent = prefix + (target >= 1000 ? val.toLocaleString() : val) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        });
+      });
+    }, { threshold: 0.5 });
+    const statsBar = document.getElementById('statsBar');
+    if (statsBar) statsObserver.observe(statsBar);
+
+    // ===== 3D TILT ON ROOM CARDS =====
+    document.querySelectorAll('.room-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `translateY(-10px) rotateX(${y * -4}deg) rotateY(${x * 4}deg)`;
+        const img = card.querySelector('img');
+        if (img) img.style.transform = `scale(1.12) translate(${x * -8}px, ${y * -6}px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        const img = card.querySelector('img');
+        if (img) img.style.transform = '';
+      });
+    });
+
+    // ===== 3D TILT ON WHY CARDS =====
+    document.querySelectorAll('.why-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `translateY(-8px) rotateX(${y * -2}deg) rotateY(${x * 2}deg)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    // ===== 3D FLOATING PARTICLES (Hero) =====
+    (function createParticles() {
+      const container = document.getElementById('heroParticles');
+      if (!container) return;
+      const colors = ['gold', 'gold', 'white', 'gold'];
+      for (let i = 0; i < 25; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle-3d ' + colors[i % colors.length];
+        const size = 2 + Math.random() * 4;
+        p.style.cssText = `
+          left:${Math.random() * 100}%; top:${Math.random() * 100}%;
+          width:${size}px; height:${size}px;
+          --dur:${6 + Math.random() * 10}s;
+          --del:${Math.random() * 6}s;
+          --max-op:${0.3 + Math.random() * 0.5};
+        `;
+        container.appendChild(p);
+      }
+    })();
+
+    // ===== CUSTOM CURSOR =====
+    const cursorRing = document.getElementById('cursorRing');
+    const cursorDot = document.getElementById('cursorDot');
+    const interactiveSelectors = ['a', 'button', '.btn', '.room-card', '.why-card', '.map-card', '.nav-toggle', '.nav-links a', '.whatsapp-float a'];
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+
+    const trailDots = [];
+    for (let i = 0; i < 8; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-trail-dot';
+      document.body.appendChild(dot);
+      trailDots.push({ el: dot, x: mouseX, y: mouseY });
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursorDot.style.transform = `translate3d(${mouseX}px,${mouseY}px,0)`;
+      cursorRing.style.transform = `translate3d(${mouseX}px,${mouseY}px,0)`;
+      trailDots.forEach((dot, i) => {
+        setTimeout(() => {
+          dot.el.style.transform = `translate3d(${mouseX}px,${mouseY}px,0) scale(${1 - i * 0.08})`;
+          dot.el.style.opacity = `${0.4 - i * 0.045}`;
+        }, i * 25);
+      });
+    }, { passive: true });
+
+    document.addEventListener('mouseover', (e) => {
+      if (interactiveSelectors.some(s => e.target.closest(s))) { cursorRing.classList.add('hover'); cursorDot.classList.add('hover'); }
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (interactiveSelectors.some(s => e.target.closest(s))) { cursorRing.classList.remove('hover'); cursorDot.classList.remove('hover'); }
+    });
+    document.addEventListener('mousedown', () => { cursorRing.style.transform = `translate3d(${mouseX}px,${mouseY}px,0) scale(0.75)`; });
+    document.addEventListener('mouseup', () => { cursorRing.style.transform = `translate3d(${mouseX}px,${mouseY}px,0) scale(1)`; });
+    document.addEventListener('mouseleave', () => { cursorRing.style.opacity = '0'; cursorDot.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cursorRing.style.opacity = '0.5'; cursorDot.style.opacity = '0.9'; });
+
+    // ===== PARALLAX HERO SCROLL =====
+    const hero = document.getElementById('hero');
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY;
+      if (sy < window.innerHeight) {
+        hero.querySelector('.hero-media').style.transform = `translateY(${sy * 0.15}px) scale(${1 + sy * 0.0004})`;
+      }
+    }, { passive: true });
+
+    // ===== SMOOTH SCROLL INDICATOR =====
+    document.querySelector('.hero-scroll')?.addEventListener('click', () => {
+      window.scrollTo({ top: window.innerHeight - 80, behavior: 'smooth' });
+    });
+
+    console.log('%c Umnyango Residences ✦ Premium Living ', 'background: #0a0a08; color: #c9a84c; font-size: 14px; font-weight: bold; padding: 12px 24px; border-radius: 8px;');
+    console.log('%c Crafted by KRAFT Studios ', 'background: #1a1a18; color: #faf6ef; font-size: 12px; padding: 6px 16px; border-radius: 4px;');
+  </script>
+</body>
+</html>

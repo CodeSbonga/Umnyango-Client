@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Umnyango Hotel & Suites</title>
+  <meta name="description" content="Contact Umnyango Residences to book a viewing, enquire about availability, or ask about our premium rental suites in Vosloorus, Ekurhuleni." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== WHATSAPP CTA BANNER ===== */
+    .wa-cta-banner {
+      background: #1a9e52;
+      padding: 36px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wa-cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.06), transparent 50%);
+      pointer-events: none;
+    }
+
+    .wa-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wa-cta-text h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .wa-cta-text p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact-section {
+      padding: 100px 0;
+      background: var(--ivory);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    /* ===== INFO PANEL ===== */
+    .contact-info {
+      position: sticky;
+      top: calc(var(--nav-h) + 32px);
+    }
+
+    .info-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gold-dim);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .info-item:hover .info-icon {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .info-text .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--olive);
+      margin-bottom: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .info-text .value {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .info-text .value a {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .info-text .value a:hover {
+      color: var(--gold);
+    }
+
+    .hours-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px 30px;
+      box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--gold);
+      margin-top: 12px;
+      border: 1px solid var(--border-light);
+      border-top-width: 3px;
+      border-top-color: var(--gold);
+    }
+
+    .hours-card h4 {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold-deep);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      font-family: 'Inter', sans-serif;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .hours-row:last-child {
+      border-bottom: none;
+    }
+
+    .hours-row .day {
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    /* ===== FORM ===== */
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 48px 48px 44px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+    }
+
+    .contact-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--charcoal-dark);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .contact-form-wrap > p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--charcoal);
+      margin-bottom: 7px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      background: var(--ivory-light);
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-dim);
+      background: var(--white);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b5e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 44px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-submit-row {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .form-success {
+      display: none;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      color: #15803d;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* ===== MAP SECTION ===== */
+    .contact-map-section {
+      background: var(--charcoal-dark);
+      padding: 100px 0;
+    }
+
+    .contact-map-section .section-label {
+      color: var(--gold-light);
+    }
+
+    .contact-map-section .section-label::before {
+      background: var(--gold);
+    }
+
+    .map-embed {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      margin-top: 44px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .map-embed iframe {
+      display: block;
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .contact-info {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        padding: 72px 0;
+      }
+      .contact-form-wrap {
+        padding: 32px 24px 30px;
+        border-radius: var(--radius-lg);
+      }
+      .contact-form-wrap h3 {
+        font-size: 1.3rem;
+      }
+      .wa-cta-banner {
+        padding: 28px 0;
+      }
+      .wa-cta-text h3 {
+        font-size: 1.2rem;
+      }
+      .map-embed iframe {
+        height: 280px;
+      }
+      .hours-card {
+        padding: 24px 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .wa-cta-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+      .contact-map-section {
+        padding: 72px 0;
+      }
+      .info-item {
+        gap: 14px;
+      }
+      .info-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="mainNav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Umnyango<span>Residences</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="properties.html">Properties</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary btn-sm">Book a Viewing</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER WITH SLIDESHOW ===== -->
+  <header class="page-header">
+    <div class="hs-slides" id="hsSlides"></div>
+    <div class="hs-overlay"></div>
+    <div class="container">
+      <p class="breadcrumb">
+        <a href="index.html">Home</a> &rsaquo; Contact
+      </p>
+      <h1>Get In Touch</h1>
+      <p>
+        Book a viewing, ask about availability, or send us a message — we respond the same day.
+      </p>
+    </div>
+  </header>
+
+  <script>
+    (function(){
+      var imgs = [
+        'images/Ext 26/photo-02.jpeg',
+        'images/Ext 9/photo-04.jpeg',
+        'images/Eastfield/photo-03.png',
+        'images/Ext 26/photo-07.jpeg',
+        'images/Eastfield/photo-06.png',
+        'images/Ext 26/photo-10.jpeg'
+      ];
+      var wrap = document.getElementById('hsSlides');
+      var slides = imgs.map(function(src, i) {
+        var d = document.createElement('div');
+        d.className = 'hs-slide' + (i === 0 ? ' active' : '');
+        d.style.backgroundImage = "url('" + src + "')";
+        wrap.appendChild(d);
+        return d;
+      });
+      var cur = 0;
+      setInterval(function() {
+        slides[cur].classList.remove('active');
+        cur = (cur + 1) % slides.length;
+        slides[cur].classList.add('active');
+      }, 5000);
+    })();
+  </script>
+
+  <!-- ===== WHATSAPP CTA BANNER ===== -->
+  <div class="wa-cta-banner">
+    <div class="container">
+      <div class="wa-cta-inner">
+        <div class="wa-cta-text">
+          <h3>Message Us on WhatsApp — We Reply Fast</h3>
+          <p>Quickest way to reach us. Send a message and we'll get back to you within minutes.</p>
+        </div>
+        <a href="https://wa.me/27728287116?text=Hi%20Umnyango%2C%20I%20am%20interested%20in%20renting.%20Please%20can%20you%20tell%20me%20more%3F" target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- ===== INFO PANEL ===== -->
+        <div class="contact-info reveal">
+          <span class="section-label">Reach Us</span>
+          <h2 class="section-title" style="margin-bottom:32px;">We'd Love to Hear <span class="gold">From You</span></h2>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.09.86.24 1.71.45 2.54a2 2 0 0 1-.45 2.11L7.91 9.9a16 16 0 0 0 6.19 6.19l.96-.96a2 2 0 0 1 2.11-.45c.83.21 1.68.36 2.54.45A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="label">Call Us</div>
+              <div class="value"><a href="tel:+27728287116">+27 72 828 7116</a></div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="label">Email</div>
+              <div class="value"><a href="mailto:Thandolwethu@gems.gov.za">Thandolwethu@gems.gov.za</a></div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="label">Based In</div>
+              <div class="value">Vosloorus, Ekurhuleni<br>Gauteng, 1475</div>
+            </div>
+          </div>
+
+          <div class="hours-card">
+            <h4>Opening Hours</h4>
+            <div class="hours-row">
+              <span class="day">Monday – Friday</span>
+              <span>8:00am – 5:00pm</span>
+            </div>
+            <div class="hours-row">
+              <span class="day">Saturday</span>
+              <span>9:00am – 1:00pm</span>
+            </div>
+            <div class="hours-row">
+              <span class="day">Sunday</span>
+              <span>Closed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== CONTACT FORM ===== -->
+        <div class="contact-form-wrap reveal reveal-delay-2">
+          <h3>Send Us a Message</h3>
+          <p>Fill in the form below and we'll get back to you within the same business day.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Your Name *</label>
+                <input type="text" id="fname" name="name" placeholder="e.g. Sipho Dlamini" required />
+              </div>
+              <div class="form-group">
+                <label for="fphone">Phone Number *</label>
+                <input type="tel" id="fphone" name="phone" placeholder="+27 XX XXX XXXX" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="femail">Email Address</label>
+              <input type="email" id="femail" name="email" placeholder="your@email.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="fproperty">Property of Interest</label>
+              <select id="fproperty" name="property">
+                <option value="">Select a property...</option>
+                <option value="Extension 26">Extension 26</option>
+                <option value="Marimba Extension 9">Marimba Extension 9</option>
+                <option value="Eastfield">Eastfield</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fmessage">Your Message *</label>
+              <textarea id="fmessage" name="message" placeholder="Tell us about yourself and when you'd like to move in..." required></textarea>
+            </div>
+
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <a href="https://wa.me/27728287116?text=Hi%20Umnyango%2C%20I%20am%20interested%20in%20renting." target="_blank" rel="noopener" class="btn btn-whatsapp">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                Or WhatsApp Us
+              </a>
+            </div>
+
+            <div class="form-success" id="formSuccess">
+              Your message has been sent. We will call or WhatsApp you shortly.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAP SECTION ===== -->
+  <section class="contact-map-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title light">Prime Location in <span class="gold">Vosloorus</span></h2>
+        <p class="section-subtitle light">All our properties are located across Vosloorus, Ekurhuleni — close to schools, transport corridors, and shopping precincts.</p>
+      </div>
+      <div class="map-embed reveal reveal-delay-2">
+        <iframe src="https://maps.google.com/maps?q=Vosloorus+Ekurhuleni+Gauteng&output=embed" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" title="Vosloorus location"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-body">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">Umnyango<span>Residences</span></a>
+            <p>Providing affordable, high-quality rental accommodation across Vosloorus, Ekurhuleni since 2018.</p>
+            <p class="footer-est">Est. 2018 &middot; Vosloorus, Ekurhuleni</p>
+          </div>
+
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Our Properties</a>
+            <a href="about.html">About Umnyango</a>
+            <a href="contact.html">Contact Us</a>
+            <h4 class="footer-links-sub">Properties</h4>
+            <a href="property-detail.html?p=1">Extension 26</a>
+            <a href="property-detail.html?p=2">Marimba Extension 9</a>
+            <a href="property-detail.html?p=3">Eastfield</a>
+          </div>
+
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Vosloorus, Ekurhuleni, Gauteng
+            </p>
+            <p>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.09.86.24 1.71.45 2.54a2 2 0 0 1-.45 2.11L7.91 9.9a16 16 0 0 0 6.19 6.19l.96-.96a2 2 0 0 1 2.11-.45c.83.21 1.68.36 2.54.45A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+27728287116">+27 72 828 7116</a>
+            </p>
+            <p>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:3px;opacity:.7"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:Thandolwethu@gems.gov.za">Thandolwethu@gems.gov.za</a>
+            </p>
+            <a href="https://wa.me/27728287116" class="footer-wa-link" target="_blank" rel="noopener">Chat on WhatsApp →</a>
+            <div class="footer-hours">
+              Mon–Fri: 8am – 5pm<br>
+              Sat: 9am – 1pm<br>
+              Sun: Closed
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Umnyango Property. All rights reserved.</span>
+        <span>Built by <a href="https://kraftstudios.co.za" target="_blank" rel="noopener">KRAFT Studios</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/27728287116" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    // ===== NAV SCROLL =====
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ===== MOBILE NAV TOGGLE =====
+    const toggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    // ===== PRE-FILL PROPERTY FROM URL =====
+    const urlParams = new URLSearchParams(window.location.search);
+    const propertyParam = urlParams.get('property');
+    if (propertyParam) {
+      const select = document.getElementById('fproperty');
+      if (select) {
+        for (let opt of select.options) {
+          if (opt.value === propertyParam) {
+            select.value = propertyParam;
+            break;
+          }
+        }
+      }
+    }
+
+    // ===== FORM HANDLING =====
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('fname').value.trim();
+      const phone = document.getElementById('fphone').value.trim();
+      const email = document.getElementById('femail').value.trim();
+      const property = document.getElementById('fproperty').value;
+      const msg = document.getElementById('fmessage').value.trim();
+      if (!name || !phone || !msg) {
+        alert('Please fill in your name, phone number, and message.');
+        return;
+      }
+      // Build WhatsApp message
+      let text = 'New enquiry from ' + name;
+      text += '\nPhone: ' + phone;
+      if (email) text += '\nEmail: ' + email;
+      if (property) text += '\nProperty: ' + property;
+      text += '\n\n' + msg;
+      // Open WhatsApp with pre-filled message
+      window.open('https://wa.me/27728287116?text=' + encodeURIComponent(text), '_blank');
+      const success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+      success.textContent = '✓ Redirecting to WhatsApp to send your message.';
+      this.reset();
+      setTimeout(() => {
+        success.style.display = 'none';
+      }, 8000);
+    });
+
+    // ===== CUSTOM CURSOR =====
+    const cursorRing = document.getElementById('cursorRing');
+    const cursorDot = document.getElementById('cursorDot');
+    const interactiveSelectors = ['a', 'button', '.btn', '.nav-toggle', '.nav-links a', '.contact-form-wrap input', '.contact-form-wrap textarea', '.contact-form-wrap select', '.info-item', '.hours-card', '.map-embed', '.whatsapp-float a'];
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    // Create cursor trail dots
+    const trailDots = [];
+    for (let i = 0; i < 8; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-trail-dot';
+      document.body.appendChild(dot);
+      trailDots.push({ el: dot, x: mouseX, y: mouseY });
+    }
+
+    document.addEventListener('mousemove', (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      cursorDot.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0)';
+      cursorRing.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0)';
+
+      // Trail animation
+      trailDots.forEach(function(dot, i) {
+        setTimeout(function() {
+          dot.el.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0)';
+          dot.el.style.opacity = '' + (0.5 - i * 0.06);
+        }, i * 30);
+      });
+    }, { passive: true });
+
+    // Hover states for interactives
+    document.addEventListener('mouseover', (event) => {
+      if (interactiveSelectors.some(function(selector) { return event.target.closest(selector); })) {
+        cursorRing.classList.add('hover');
+        cursorDot.classList.add('hover');
+      }
+    });
+    document.addEventListener('mouseout', (event) => {
+      if (interactiveSelectors.some(function(selector) { return event.target.closest(selector); })) {
+        cursorRing.classList.remove('hover');
+        cursorDot.classList.remove('hover');
+      }
+    });
+
+    // Click effect
+    document.addEventListener('mousedown', () => {
+      cursorRing.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0) scale(0.75)';
+    });
+    document.addEventListener('mouseup', () => {
+      cursorRing.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0) scale(1)';
+    });
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+      cursorRing.style.opacity = '0';
+      cursorDot.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      cursorRing.style.opacity = '0.6';
+      cursorDot.style.opacity = '0.95';
+    });
+
+    console.log('%c Umnyango ✦ Luxury Living ', 'background: #161612; color: #c9a84c; font-size: 14px; font-weight: bold; padding: 10px 20px; border-radius: 8px;');
+    console.log('%c Built with passion by KRAFT Studios ', 'background: #2a2a24; color: #faf6ef; font-size: 12px; padding: 6px 16px; border-radius: 4px;');
+  </script>
+</body>
+</html>
