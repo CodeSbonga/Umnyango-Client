@@ -609,7 +609,7 @@
           <p>Today, Umnyango continues to grow its property portfolio in Ekurhuleni, providing professionally managed rental accommodation that balances affordability with quality - creating sustainable value for both tenants and investors.</p>
           <h2>Our Approach</h2>
           <p>We operate on a simple principle: responsible property ownership and management is the foundation of stable communities. We maintain open communication with all our tenants, carry out regular property inspections, and respond promptly to maintenance requests.</p>
-          <p>Choosing Umnyango means choosing a landlord that values its tenants and invests in the communities it serves - clean, safe, well-maintained properties with responsive, professional management.</p>
+          <p>Choosing Umnyango means choosing a property partner that values its residents and invests in the communities it serves, providing clean, safe, and well-maintained properties supported by responsive and professional management.</p>
         </div>
 
         <div class="vm-stack reveal reveal-delay-2">
@@ -854,6 +854,14 @@
         toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
+    });
+    document.addEventListener('click', function(e) {
+      if (links.classList.contains('open') && !toggle.contains(e.target) && !e.target.closest('a')) {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
     });
 
     // ===== SCROLL REVEAL =====

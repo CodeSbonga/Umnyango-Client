@@ -129,6 +129,7 @@
       min-height: 320px;
       overflow: hidden;
       background: var(--ivory-dark);
+      cursor: pointer;
     }
 
     .property-photo img {
@@ -683,6 +684,14 @@
         document.body.style.overflow = '';
       });
     });
+    document.addEventListener('click', function(e) {
+      if (links.classList.contains('open') && !toggle.contains(e.target) && !e.target.closest('a')) {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
 
     // ===== FILTER =====
     var cards = document.querySelectorAll('.property-card');
@@ -773,6 +782,17 @@
     document.addEventListener('mouseenter', function() {
       cursorRing.style.opacity = '0.6';
       cursorDot.style.opacity = '0.95';
+    });
+
+    // ===== CLICK PHOTO TO VIEW DETAILS =====
+    document.querySelectorAll('.property-card').forEach(function(card) {
+      var photo = card.querySelector('.property-photo');
+      var detailLink = card.querySelector('a[href*="property-detail.html"]');
+      if (photo && detailLink) {
+        photo.addEventListener('click', function() {
+          window.location.href = detailLink.getAttribute('href');
+        });
+      }
     });
 
     // ===== PARALLAX ON PROPERTY CARD =====

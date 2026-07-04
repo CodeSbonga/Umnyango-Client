@@ -874,6 +874,14 @@
         document.body.style.overflow = '';
       });
     });
+    document.addEventListener('click', (e) => {
+      if (links.classList.contains('open') && !toggle.contains(e.target) && !e.target.closest('a')) {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
 
     // ===== SCROLL REVEAL =====
     const observer = new IntersectionObserver((entries) => {
