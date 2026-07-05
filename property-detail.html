@@ -195,7 +195,23 @@
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
       gap: 6px;
       max-height: 220px;
-      overflow: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) transparent;
+    }
+
+    .thumb-grid::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .thumb-grid::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 3px;
+    }
+
+    .thumb-grid::-webkit-scrollbar-track {
+      background: transparent;
     }
 
     .gallery-thumb {
