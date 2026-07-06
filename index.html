@@ -90,21 +90,6 @@
       display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 40px;
       opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 1s forwards;
     }
-    .hero-trust {
-      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-      opacity: 0; animation: fadeInUp 0.8s var(--ease-out) 1.2s forwards;
-    }
-    .trust-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 8px 16px; border-radius: 999px;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.6); font-size: 0.7rem; font-weight: 600;
-      font-family: 'Inter', sans-serif; backdrop-filter: blur(8px);
-      transition: all 0.4s var(--ease-out);
-    }
-    .trust-badge:hover { background: rgba(255,255,255,0.08); border-color: rgba(111,168,58,0.2); transform: translateY(-2px); }
-    .trust-badge .icon { width: 18px; height: 18px; border-radius: 50%; background: rgba(111,168,58,0.12); display: grid; place-items: center; color: var(--gold); font-size: 0.55rem; }
-
     .hero-scroll {
       position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
       z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -162,6 +147,16 @@
     .map-card-label { display: flex; align-items: center; gap: 10px; padding: 14px 18px; background: rgba(255,255,255,0.03); }
     .map-card-label .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; box-shadow: 0 0 10px rgba(111,168,58,0.4); animation: pulse-dot 2s ease-in-out infinite; }
     .map-card-label span { font-size: 0.82rem; color: var(--white); font-weight: 600; }
+    .map-frame-wrap { position: relative; height: 220px; }
+    .map-frame-wrap iframe { position: relative; z-index: 1; background: transparent; }
+    .map-placeholder {
+      position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+      color: rgba(255,255,255,0.4); font-size: 0.75rem; font-family: 'Inter', sans-serif;
+      transition: opacity 0.4s var(--ease-out);
+    }
+    .map-frame-wrap.loaded .map-placeholder { opacity: 0; pointer-events: none; }
+    .map-spinner { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.15); border-top-color: var(--gold); animation: map-spin 0.9s linear infinite; }
+    @keyframes map-spin { to { transform: rotate(360deg); } }
 
     /* ── CTA ── */
     .cta-section {
@@ -258,11 +253,6 @@
           </a>
           <a href="contact.html" class="btn btn-ghost">Schedule a Tour</a>
         </div>
-        <div class="hero-trust">
-          <div class="trust-badge"><span class="icon">✦</span> Established 2018</div>
-          <div class="trust-badge"><span class="icon">✦</span> Professionally Managed</div>
-          <div class="trust-badge"><span class="icon">✦</span> All-Inclusive</div>
-        </div>
       </div>
     </div>
 
@@ -327,7 +317,7 @@
 
         <div class="room-card tilt-3d reveal reveal-delay-3">
           <div class="room-card-image shine-overlay">
-            <img src="images/Eastfield/photo-01.png" alt="Eastfield Suite" loading="lazy" />
+            <img src="images/Eastfield/photo-01.jpeg" alt="Eastfield Suite" loading="lazy" />
           </div>
           <div class="room-card-body">
             <h3>Eastfield</h3>
@@ -372,15 +362,24 @@
       <div class="maps-grid">
         <div class="map-card reveal reveal-delay-1">
           <div class="map-card-label"><div class="dot"></div><span>Extension 26</span></div>
-          <iframe src="https://maps.google.com/maps?q=Extension+26+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Extension 26"></iframe>
+          <div class="map-frame-wrap">
+            <div class="map-placeholder"><div class="map-spinner"></div><span>Loading map…</span></div>
+            <iframe src="https://maps.google.com/maps?q=Extension+26+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Extension 26" onload="this.parentElement.classList.add('loaded')"></iframe>
+          </div>
         </div>
         <div class="map-card reveal reveal-delay-2">
           <div class="map-card-label"><div class="dot"></div><span>Marimba Ext 9</span></div>
-          <iframe src="https://maps.google.com/maps?q=Marimba+Extension+9+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Marimba Ext 9"></iframe>
+          <div class="map-frame-wrap">
+            <div class="map-placeholder"><div class="map-spinner"></div><span>Loading map…</span></div>
+            <iframe src="https://maps.google.com/maps?q=Marimba+Extension+9+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Marimba Ext 9" onload="this.parentElement.classList.add('loaded')"></iframe>
+          </div>
         </div>
         <div class="map-card reveal reveal-delay-3">
           <div class="map-card-label"><div class="dot"></div><span>Eastfield</span></div>
-          <iframe src="https://maps.google.com/maps?q=Eastfield+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Eastfield"></iframe>
+          <div class="map-frame-wrap">
+            <div class="map-placeholder"><div class="map-spinner"></div><span>Loading map…</span></div>
+            <iframe src="https://maps.google.com/maps?q=Eastfield+Vosloorus+Ekurhuleni&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" title="Eastfield" onload="this.parentElement.classList.add('loaded')"></iframe>
+          </div>
         </div>
       </div>
     </div>
